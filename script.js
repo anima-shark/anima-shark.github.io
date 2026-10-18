@@ -10,8 +10,7 @@ function applyTheme(theme) {
   try { localStorage.setItem('theme', theme); } catch {}
 }
 
-const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-root.dataset.theme = getSavedTheme() || (systemDark ? 'dark' : 'light');
+root.dataset.theme = getSavedTheme() || 'dark';
 
 toggle.addEventListener('click', () => {
   applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
