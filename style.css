@@ -24,7 +24,13 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--bg) 30%, transparent), color-mix(in srgb, var(--bg) 55%, transparent)),
+    url("bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
@@ -51,7 +57,7 @@ a:hover { text-decoration: underline; }
 .logo:hover { text-decoration: none; }
 .logo img { display: block; height: 44px; width: auto; }
 .nav { display: flex; gap: 1.25rem; margin-left: auto; }
-.nav a { color: var(--muted); }
+.nav a { color: var(--muted); white-space: nowrap; }
 .nav a:hover { color: var(--text); text-decoration: none; }
 
 .theme-toggle {
@@ -67,7 +73,14 @@ a:hover { text-decoration: underline; }
 
 main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 
-.hero { padding: 6rem 0 4rem; }
+.hero {
+  margin: 4rem 0 1.5rem;
+  padding: 2.5rem 1.5rem 3rem;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
 .eyebrow { color: var(--accent); font-weight: 600; margin: 0; }
 .hero h1 { font-size: clamp(2.4rem, 8vw, 4rem); line-height: 1.1; margin: .3rem 0 1rem; }
 .lead { font-size: 1.2rem; color: var(--muted); max-width: 36rem; }
@@ -85,7 +98,15 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 .btn:hover { transform: translateY(-2px); text-decoration: none; }
 :root[data-theme="dark"] .btn { color: #121214; }
 
-.section { padding: 3rem 0; scroll-margin-top: 4rem; }
+.section {
+  margin: 1.5rem 0;
+  padding: 2rem 1.5rem;
+  scroll-margin-top: 4rem;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
 .section h2 { font-size: 1.6rem; margin: 0 0 1rem; }
 
 .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -102,14 +123,16 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 .contacts li { display: flex; gap: 1rem; border-bottom: 1px solid var(--border); padding-bottom: .6rem; }
 .contacts span { color: var(--muted); min-width: 6rem; }
 
-.footer { padding-top: 2rem; padding-bottom: 2rem; color: var(--muted); border-top: 1px solid var(--border); }
+.footer { margin-top: 2rem; padding-top: 2rem; padding-bottom: 2rem; color: var(--muted); border-top: 1px solid var(--border); }
 
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s; }
 .reveal.visible { opacity: 1; transform: none; }
 
 @media (max-width: 520px) {
-  .nav { gap: .8rem; font-size: .9rem; }
-  .hero { padding-top: 3.5rem; }
+  .header { gap: .75rem; padding-inline: .9rem; }
+  .nav { gap: .7rem; font-size: .85rem; }
+  .logo span { display: none; }
+  .hero { margin-top: 2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
