@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ім'я Прізвище — Веб-розробник</title>
+  <meta name="description" content="Сайт-візитка: коротко про мене, послуги та контакти.">
+  <meta property="og:title" content="Ім'я Прізвище — Веб-розробник">
+  <meta property="og:description" content="Сайт-візитка: коротко про мене, послуги та контакти.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#top" aria-label="На початок">
+      <img src="logo.svg" alt="Логотип акули" width="82" height="44">
+      <span>І.П.</span>
+    </a>
+    <nav class="nav" aria-label="Основна навігація">
+      <a href="#about">Про мене</a>
+      <a href="#services">Послуги</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">Привіт, я</p>
+      <h1>Ім'я Прізвище</h1>
+      <p class="lead">Веб-розробник. Створюю швидкі та охайні сайти для людей і малого бізнесу.</p>
+      <a class="btn" href="#contacts">Зв'язатися</a>
+    </section>
+
+    <section id="about" class="section reveal">
+      <h2>Про мене</h2>
+      <p>Тут кілька речень про вас: чим займаєтесь, який маєте досвід і що вас відрізняє. Замініть цей текст на власний.</p>
+    </section>
+
+    <section id="services" class="section reveal">
+      <h2>Послуги</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Сайти-візитки</h3>
+          <p>Лаконічний сайт, який чітко розповідає про вас або вашу справу.</p>
+        </article>
+        <article class="card">
+          <h3>Лендінги</h3>
+          <p>Одна сторінка, що веде відвідувача до потрібної дії.</p>
+        </article>
+        <article class="card">
+          <h3>Підтримка</h3>
+          <p>Правки, оновлення контенту та покращення швидкості.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacts" class="section reveal">
+      <h2>Контакти</h2>
+      <ul class="contacts">
+        <li><span>Email</span> <a href="mailto:you@example.com">you@example.com</a></li>
+        <li><span>Телефон</span> <a href="tel:+380000000000">+38 000 000 00 00</a></li>
+        <li><span>Telegram</span> <a href="https://t.me/username" target="_blank" rel="noopener">@username</a></li>
+        <li><span>GitHub</span> <a href="https://github.com/username" target="_blank" rel="noopener">github.com/username</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Ім'я Прізвище</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
