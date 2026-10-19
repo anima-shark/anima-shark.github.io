@@ -48,3 +48,85 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.body.appendChild(layer);
   setTimeout(() => layer.remove(), 13500);
 }
+
+const musicBtn = document.getElementById('musicToggle');
+const SONG_URL = 'music/song.mp3';
+let songAudio = null;
+let synth = null;
+
+function createSynth() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const master = ctx.createGain();
+  master.gain.value = 0.12;
+  master.connect(ctx.destination);
+
+  const hz = (n) => 440 * Math.pow(2, (n - 69) / 12);
+  const lead = [
+    64, 67, 72, 67, 64, 67, 72, null,
+    62, 65, 71, 65, 62, 65, 71, null,
+    60, 64, 69, 64, 60, 64, 69, null,
+    55, 59, 62, 67, 62, 59, 67, null,
+  ];
+  const bass = { 0: 48, 8: 43, 16: 45, 24: 43 };
+  const step = 0.2;
+  let i = 0;
+  let next = ctx.currentTime + 0.05;
+  let timer = null;
+
+  function tone(note, when, len, type, vol) {
+    const osc = ctx.createOscillator();
+    const env = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = hz(note);
+    env.gain.setValueAtTime(0, when);
+    env.gain.linearRampToValueAtTime(vol, when + 0.02);
+    env.gain.exponentialRampToValueAtTime(0.001, when + len);
+    osc.connect(env).connect(master);
+    osc.start(when);
+    osc.stop(when + len + 0.05);
+  }
+
+  function schedule() {
+    while (next < ctx.currentTime + 0.4) {
+      const n = lead[i % lead.length];
+      if (n) tone(n, next, step * 1.6, 'triangle', 0.6);
+      if (bass[i % lead.length]) tone(bass[i % lead.length], next, step * 6, 'sine', 0.7);
+      next += step;
+      i++;
+    }
+  }
+
+  return {
+    start() { ctx.resume(); schedule(); timer = setInterval(schedule, 100); },
+    stop() { clearInterval(timer); ctx.suspend(); },
+  };
+}
+
+async function startMusic() {
+  if (!songAudio && !synth) {
+    try {
+      const probe = await fetch(SONG_URL, { method: 'HEAD' });
+      if (probe.ok) {
+        songAudio = new Audio(SONG_URL);
+        songAudio.loop = true;
+        songAudio.volume = 0.5;
+      }
+    } catch {}
+    if (!songAudio) synth = createSynth();
+  }
+  if (songAudio) await songAudio.play(); else synth.start();
+}
+
+function stopMusic() {
+  if (songAudio) songAudio.pause();
+  if (synth) synth.stop();
+}
+
+musicBtn.addEventListener('click', async () => {
+  const on = musicBtn.getAttribute('aria-pressed') !== 'true';
+  try {
+    if (on) await startMusic(); else stopMusic();
+  } catch { return; }
+  musicBtn.setAttribute('aria-pressed', String(on));
+  musicBtn.setAttribute('aria-label', on ? 'Вимкнути музику' : 'Увімкнути музику');
+});

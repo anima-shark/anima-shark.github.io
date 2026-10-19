@@ -185,3 +185,15 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 @media (prefers-reduced-motion: reduce) {
   .bubbles { display: none; }
 }
+
+#musicToggle { position: relative; margin-left: -.75rem; }
+#musicToggle[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+:root[data-theme="dark"] #musicToggle[aria-pressed="true"] { color: #121214; }
+#musicToggle[aria-pressed="false"]::after {
+  content: "";
+  position: absolute;
+  inset: 50% 22% auto;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
