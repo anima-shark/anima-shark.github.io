@@ -130,3 +130,18 @@ musicBtn.addEventListener('click', async () => {
   musicBtn.setAttribute('aria-pressed', String(on));
   musicBtn.setAttribute('aria-label', on ? 'Вимкнути музику' : 'Увімкнути музику');
 });
+
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.addEventListener('pointerdown', (e) => {
+    for (let i = 0; i < 7; i++) {
+      const b = document.createElement('span');
+      b.className = 'pop-bubble';
+      b.style.cssText =
+        `left:${e.clientX + (Math.random() - 0.5) * 16}px;top:${e.clientY + (Math.random() - 0.5) * 10}px;` +
+        `--size:${5 + Math.random() * 10}px;--dur:${1.4 + Math.random() * 1.1}s;` +
+        `--dx:${(Math.random() - 0.5) * 60}px;--dy:${-(60 + Math.random() * 90)}px`;
+      b.addEventListener('animationend', () => b.remove());
+      document.body.appendChild(b);
+    }
+  });
+}
