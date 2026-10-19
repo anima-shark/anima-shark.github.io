@@ -145,3 +145,33 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+.bubbles {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .9) 0 12%, rgba(255, 255, 255, .15) 40%, rgba(255, 255, 255, .05) 100%);
+  border: 1.5px solid rgba(255, 255, 255, .7);
+  opacity: 0;
+  animation: rise var(--dur) ease-in var(--delay) forwards;
+}
+
+@keyframes rise {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: .9; }
+  50%  { transform: translate(var(--sway), -55vh); }
+  90%  { opacity: .8; }
+  100% { transform: translate(calc(var(--sway) * -1), -115vh); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbles { display: none; }
+}
