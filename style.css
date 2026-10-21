@@ -236,3 +236,15 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 
 html, body { cursor: url("submarine.svg") 43 19, auto; }
 a, button { cursor: url("submarine.svg") 43 19, pointer; }
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.contacts {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+img { -webkit-user-drag: none; user-drag: none; }
