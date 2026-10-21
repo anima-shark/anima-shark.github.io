@@ -132,16 +132,33 @@ musicBtn.addEventListener('click', async () => {
 });
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.addEventListener('pointerdown', (e) => {
-    for (let i = 0; i < 7; i++) {
+  function popBubbles(x, y, count, spread) {
+    for (let i = 0; i < count; i++) {
       const b = document.createElement('span');
       b.className = 'pop-bubble';
       b.style.cssText =
-        `left:${e.clientX + (Math.random() - 0.5) * 16}px;top:${e.clientY + (Math.random() - 0.5) * 10}px;` +
+        `left:${x + (Math.random() - 0.5) * spread}px;top:${y + (Math.random() - 0.5) * spread * 0.6}px;` +
         `--size:${5 + Math.random() * 10}px;--dur:${1.4 + Math.random() * 1.1}s;` +
         `--dx:${(Math.random() - 0.5) * 60}px;--dy:${-(60 + Math.random() * 90)}px`;
       b.addEventListener('animationend', () => b.remove());
       document.body.appendChild(b);
     }
+  }
+
+  let pressed = false;
+  let lastTrail = 0;
+
+  document.addEventListener('pointerdown', (e) => {
+    pressed = true;
+    popBubbles(e.clientX, e.clientY, 7, 16);
   });
+
+  document.addEventListener('pointermove', (e) => {
+    if (!pressed || e.timeStamp - lastTrail < 40) return;
+    lastTrail = e.timeStamp;
+    popBubbles(e.clientX, e.clientY, 2, 10);
+  });
+
+  ['pointerup', 'pointercancel'].forEach((type) =>
+    document.addEventListener(type, () => { pressed = false; }));
 }

@@ -233,3 +233,6 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 @media (prefers-reduced-motion: reduce) {
   .pop-bubble { display: none; }
 }
+
+html, body { cursor: url("submarine.svg") 43 19, auto; }
+a, button { cursor: url("submarine.svg") 43 19, pointer; }

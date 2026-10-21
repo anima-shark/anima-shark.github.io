@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="30" viewBox="0 0 48 30">
+  <!-- перископ -->
+  <path d="M26 8 V3 H32" stroke="#c99a00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- рубка -->
+  <rect x="20" y="7" width="12" height="7" rx="3" fill="#ffc933" stroke="#c99a00" stroke-width="1.2"/>
+  <!-- корпус -->
+  <ellipse cx="24" cy="19" rx="19" ry="8.5" fill="#ffd34d" stroke="#c99a00" stroke-width="1.4"/>
+  <!-- ілюмінатори -->
+  <circle cx="15" cy="18.5" r="3" fill="#9be7ff" stroke="#c99a00" stroke-width="1.2"/>
+  <circle cx="24" cy="18.5" r="3" fill="#9be7ff" stroke="#c99a00" stroke-width="1.2"/>
+  <circle cx="33" cy="18.5" r="3" fill="#9be7ff" stroke="#c99a00" stroke-width="1.2"/>
+  <path d="M13.8 17.6 a1.4 1.4 0 0 1 1.6 -1" stroke="#fff" stroke-width=".9" stroke-linecap="round" fill="none"/>
+  <!-- хвіст і гвинт (позаду, ліворуч) -->
+  <path d="M6 19 L1.5 13.5 L1.5 24.5 Z" fill="#c99a00"/>
+  <path d="M0.8 19 H3" stroke="#8a6a00" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
