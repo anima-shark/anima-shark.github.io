@@ -248,3 +248,25 @@ body {
 }
 
 img { -webkit-user-drag: none; user-drag: none; }
+
+.card-note { font-size: .9rem; margin-bottom: .8rem !important; }
+
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.checklist li { position: relative; padding-left: 1.7rem; }
+.checklist li::before {
+  position: absolute;
+  left: 0;
+  top: .1em;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.checklist.base li::before { content: "✓"; background: #2fbf71; color: #fff; }
+.checklist.extra li::before { content: "+"; background: #ffb020; color: #1c1c1e; }
+
+.price-note { margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
