@@ -270,3 +270,29 @@ img { -webkit-user-drag: none; user-drag: none; }
 .checklist.extra li::before { content: "+"; background: #ffb020; color: #1c1c1e; }
 
 .price-note { margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
+
+.contacts .v { color: inherit; min-width: 0; }
+.lang-toggle { font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
+#langToggle { margin-left: -.5rem; }
+
+@media (max-width: 520px) {
+  .header { gap: .5rem; }
+  .nav { gap: .55rem; font-size: .8rem; }
+  .theme-toggle { width: 32px; height: 32px; font-size: 1rem; }
+  #musicToggle, #langToggle { margin-left: 0; }
+  .logo img { height: 36px; }
+}
+
+@media (max-width: 520px) {
+  .header { flex-wrap: wrap; row-gap: .35rem; }
+  .logo { margin-right: auto; }
+  .nav { order: 3; width: 100%; margin-left: 0; justify-content: space-between; font-size: .85rem; }
+  .section { scroll-margin-top: 6.5rem; }
+  .hero h1 { font-size: clamp(1.5rem, 7.6vw, 2.4rem); overflow-wrap: anywhere; }
+}
+
+.contacts li { flex-wrap: wrap; gap: .15rem 1rem; }
+.contacts a { overflow-wrap: anywhere; min-width: 0; }
+@media (max-width: 520px) {
+  .contacts span { min-width: 5rem; }
+}

@@ -13,74 +13,75 @@
 </head>
 <body>
   <header class="header">
-    <a class="logo" href="#top" aria-label="На початок">
-      <img src="logo.svg" alt="Логотип акули" width="82" height="44">
-      <span>Аніматори</span>
+    <a class="logo" href="#top" aria-label="На початок" data-i18n-aria="logo.aria">
+      <img src="logo.svg" alt="Логотип акули" data-i18n-alt="logo.alt" width="82" height="44">
+      <span data-i18n="logo.text">Аніматори</span>
     </a>
-    <nav class="nav" aria-label="Основна навігація">
-      <a href="#about">Про нас</a>
-      <a href="#services">Послуги</a>
-      <a href="#contacts">Контакти</a>
+    <nav class="nav" aria-label="Основна навігація" data-i18n-aria="nav.aria">
+      <a href="#about" data-i18n="nav.about">Про нас</a>
+      <a href="#services" data-i18n="nav.services">Послуги</a>
+      <a href="#contacts" data-i18n="nav.contacts">Контакти</a>
     </nav>
     <button class="theme-toggle" id="musicToggle" type="button" aria-label="Увімкнути музику" aria-pressed="false">♪</button>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему">◐</button>
+    <button class="theme-toggle lang-toggle" id="langToggle" type="button" aria-label="Змінити мову">DE</button>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" data-i18n-aria="theme.aria">◐</button>
   </header>
 
   <main id="top">
     <section class="hero">
-      <p class="eyebrow">Привіт, ми</p>
-      <h1>Команда аніматорів</h1>
-      <p class="lead">Нас четверо, і ми влаштовуємо дитячі свята з іграми, конкурсами та хорошим настроєм.</p>
-      <a class="btn" href="#contacts">Замовити свято</a>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Привіт, ми</p>
+      <h1 data-i18n="hero.title">Команда аніматорів</h1>
+      <p class="lead" data-i18n="hero.lead">Нас четверо, і ми влаштовуємо дитячі свята з іграми, конкурсами та хорошим настроєм.</p>
+      <a class="btn" href="#contacts" data-i18n="hero.btn">Замовити свято</a>
     </section>
 
     <section id="about" class="section reveal">
-      <h2>Про нас</h2>
-      <p>Ми команда з чотирьох аніматорів і тільки починаємо свій шлях. Для нас кожне свято особливе, тому ми готуємося до нього уважно й вкладаємо в нього всю душу.</p>
+      <h2 data-i18n="about.title">Про нас</h2>
+      <p data-i18n="about.text">Ми команда з чотирьох аніматорів і тільки починаємо свій шлях. Для нас кожне свято особливе, тому ми готуємося до нього уважно й вкладаємо в нього всю душу.</p>
     </section>
 
     <section id="services" class="section reveal">
-      <h2>Послуги</h2>
+      <h2 data-i18n="services.title">Послуги</h2>
       <div class="cards">
         <article class="card">
-          <h3>Входить у програму</h3>
-          <p class="card-note">Основа будь-якого нашого свята</p>
+          <h3 data-i18n="services.base.title">Входить у програму</h3>
+          <p class="card-note" data-i18n="services.base.note">Основа будь-якого нашого свята</p>
           <ul class="checklist base">
-            <li>Проведення свята</li>
-            <li>Ігри з дітьми</li>
+            <li data-i18n="services.base.1">Проведення свята</li>
+            <li data-i18n="services.base.2">Ігри з дітьми</li>
           </ul>
         </article>
         <article class="card">
-          <h3>За додаткову плату</h3>
-          <p class="card-note">Замовляється окремо</p>
+          <h3 data-i18n="services.extra.title">За додаткову плату</h3>
+          <p class="card-note" data-i18n="services.extra.note">Замовляється окремо</p>
           <ul class="checklist extra">
-            <li>Прикрашання приміщення</li>
-            <li>Прибирання після свята</li>
+            <li data-i18n="services.extra.1">Прикрашання приміщення</li>
+            <li data-i18n="services.extra.2">Прибирання після свята</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Стиль свята</h3>
-          <p class="card-note">Під вподобання вашої дитини</p>
-          <p>Підбираємо різні стилі свят так, щоб воно було саме таким, як мріє ваша дитина.</p>
+          <h3 data-i18n="services.style.title">Стиль свята</h3>
+          <p class="card-note" data-i18n="services.style.note">Під вподобання вашої дитини</p>
+          <p data-i18n="services.style.text">Підбираємо різні стилі свят так, щоб воно було саме таким, як мріє ваша дитина.</p>
         </article>
       </div>
-      <p class="price-note">Вартість додаткових послуг уточнюйте під час замовлення.</p>
+      <p class="price-note" data-i18n="services.price">Вартість додаткових послуг уточнюйте під час замовлення.</p>
     </section>
 
     <section id="where" class="section reveal">
-      <h2>Де та якою мовою</h2>
+      <h2 data-i18n="where.title">Де та якою мовою</h2>
       <ul class="contacts">
-        <li><span>Країни</span> Швейцарія та Німеччина</li>
-        <li><span>Мови</span> Українська, Deutsch (німецька)</li>
+        <li><span data-i18n="where.countries.l">Країни</span> <span class="v" data-i18n="where.countries.v">Швейцарія та Німеччина</span></li>
+        <li><span data-i18n="where.langs.l">Мови</span> <span class="v" data-i18n="where.langs.v">Українська, Deutsch (німецька)</span></li>
       </ul>
-      <p class="price-note">Наш номер німецький (+49), але ми працюємо у Швейцарії, а також проводимо свята в Німеччині.</p>
+      <p class="price-note" data-i18n="where.note">Наш номер німецький (+49), але ми працюємо у Швейцарії, а також проводимо свята в Німеччині.</p>
     </section>
 
     <section id="contacts" class="section reveal">
-      <h2>Контакти</h2>
+      <h2 data-i18n="contacts.title">Контакти</h2>
       <ul class="contacts">
-        <li><span>Email</span> <a href="mailto:sophiaprytula@gmail.com">sophiaprytula@gmail.com</a></li>
-        <li><span>Телефон</span> <a href="tel:+4915120163247">+49 151 2016 3247</a></li>
+        <li><span data-i18n="contacts.email">Email</span> <a href="mailto:sophiaprytula@gmail.com">sophiaprytula@gmail.com</a></li>
+        <li><span data-i18n="contacts.phone">Телефон</span> <a href="tel:+4915120163247">+49 151 2016 3247</a></li>
         <li><span>Telegram</span> <a href="https://t.me/gingzuh" target="_blank" rel="noopener">@gingzuh</a></li>
         <li><span>GitHub</span> <a href="https://github.com/anima-shark" target="_blank" rel="noopener">github.com/anima-shark</a></li>
       </ul>
@@ -88,9 +89,10 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> Команда аніматорів</p>
+    <p>© <span id="year"></span> <span data-i18n="footer.name">Команда аніматорів</span></p>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

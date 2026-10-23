@@ -122,13 +122,23 @@ function stopMusic() {
   if (synth) synth.stop();
 }
 
+function updateMusicLabel() {
+  const on = musicBtn.getAttribute('aria-pressed') === 'true';
+  musicBtn.setAttribute('aria-label', i18n.t(on ? 'music.off' : 'music.on'));
+}
+
+document.addEventListener('langchange', updateMusicLabel);
+
+document.getElementById('langToggle').addEventListener('click', () => i18n.toggle());
+i18n.apply();
+
 musicBtn.addEventListener('click', async () => {
   const on = musicBtn.getAttribute('aria-pressed') !== 'true';
   try {
     if (on) await startMusic(); else stopMusic();
   } catch { return; }
   musicBtn.setAttribute('aria-pressed', String(on));
-  musicBtn.setAttribute('aria-label', on ? 'Вимкнути музику' : 'Увімкнути музику');
+  updateMusicLabel();
 });
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

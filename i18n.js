@@ -1,0 +1,132 @@
+const I18N = {
+  uk: {
+    'meta.title': 'Команда аніматорів — дитячі свята',
+    'meta.desc': 'Команда з чотирьох аніматорів: дитячі свята у Швейцарії та Німеччині українською та німецькою мовами.',
+    'logo.aria': 'На початок',
+    'logo.alt': 'Логотип акули',
+    'logo.text': 'Аніматори',
+    'nav.aria': 'Основна навігація',
+    'nav.about': 'Про нас',
+    'nav.services': 'Послуги',
+    'nav.contacts': 'Контакти',
+    'music.on': 'Увімкнути музику',
+    'music.off': 'Вимкнути музику',
+    'theme.aria': 'Змінити тему',
+    'lang.aria': 'Змінити мову',
+    'hero.eyebrow': 'Привіт, ми',
+    'hero.title': 'Команда аніматорів',
+    'hero.lead': 'Нас четверо, і ми влаштовуємо дитячі свята з іграми, конкурсами та хорошим настроєм.',
+    'hero.btn': 'Замовити свято',
+    'about.title': 'Про нас',
+    'about.text': 'Ми команда з чотирьох аніматорів і тільки починаємо свій шлях. Для нас кожне свято особливе, тому ми готуємося до нього уважно й вкладаємо в нього всю душу.',
+    'services.title': 'Послуги',
+    'services.base.title': 'Входить у програму',
+    'services.base.note': 'Основа будь-якого нашого свята',
+    'services.base.1': 'Проведення свята',
+    'services.base.2': 'Ігри з дітьми',
+    'services.extra.title': 'За додаткову плату',
+    'services.extra.note': 'Замовляється окремо',
+    'services.extra.1': 'Прикрашання приміщення',
+    'services.extra.2': 'Прибирання після свята',
+    'services.style.title': 'Стиль свята',
+    'services.style.note': 'Під вподобання вашої дитини',
+    'services.style.text': 'Підбираємо різні стилі свят так, щоб воно було саме таким, як мріє ваша дитина.',
+    'services.price': 'Вартість додаткових послуг уточнюйте під час замовлення.',
+    'where.title': 'Де та якою мовою',
+    'where.countries.l': 'Країни',
+    'where.countries.v': 'Швейцарія та Німеччина',
+    'where.langs.l': 'Мови',
+    'where.langs.v': 'Українська, Deutsch (німецька)',
+    'where.note': 'Наш номер німецький (+49), але ми працюємо у Швейцарії, а також проводимо свята в Німеччині.',
+    'contacts.title': 'Контакти',
+    'contacts.email': 'Email',
+    'contacts.phone': 'Телефон',
+    'footer.name': 'Команда аніматорів',
+  },
+  de: {
+    'meta.title': 'Animationsteam – Kinderfeste',
+    'meta.desc': 'Ein Team aus vier Animateuren: Kinderfeste in der Schweiz und in Deutschland auf Ukrainisch und Deutsch.',
+    'logo.aria': 'Zum Seitenanfang',
+    'logo.alt': 'Haifisch-Logo',
+    'logo.text': 'Animateure',
+    'nav.aria': 'Hauptnavigation',
+    'nav.about': 'Über uns',
+    'nav.services': 'Leistungen',
+    'nav.contacts': 'Kontakt',
+    'music.on': 'Musik einschalten',
+    'music.off': 'Musik ausschalten',
+    'theme.aria': 'Design wechseln',
+    'lang.aria': 'Sprache wechseln',
+    'hero.eyebrow': 'Hallo, wir sind das',
+    'hero.title': 'Animationsteam',
+    'hero.lead': 'Wir sind zu viert und gestalten Kinderfeste mit Spielen, Wettbewerben und guter Laune.',
+    'hero.btn': 'Fest anfragen',
+    'about.title': 'Über uns',
+    'about.text': 'Wir sind ein Team aus vier Animateuren und stehen noch ganz am Anfang. Für uns ist jedes Fest etwas Besonderes, deshalb bereiten wir uns sorgfältig vor und geben unser ganzes Herz hinein.',
+    'services.title': 'Leistungen',
+    'services.base.title': 'Im Programm enthalten',
+    'services.base.note': 'Die Grundlage jedes unserer Feste',
+    'services.base.1': 'Durchführung des Festes',
+    'services.base.2': 'Spiele mit den Kindern',
+    'services.extra.title': 'Gegen Aufpreis',
+    'services.extra.note': 'Separat buchbar',
+    'services.extra.1': 'Dekoration der Räume',
+    'services.extra.2': 'Aufräumen nach dem Fest',
+    'services.style.title': 'Festthema',
+    'services.style.note': 'Nach den Wünschen Ihres Kindes',
+    'services.style.text': 'Wir bieten verschiedene Festthemen an, damit das Fest genau so wird, wie Ihr Kind es sich erträumt.',
+    'services.price': 'Den Preis für Zusatzleistungen erfragen Sie bitte bei der Buchung.',
+    'where.title': 'Wo und in welcher Sprache',
+    'where.countries.l': 'Länder',
+    'where.countries.v': 'Schweiz und Deutschland',
+    'where.langs.l': 'Sprachen',
+    'where.langs.v': 'Ukrainisch, Deutsch',
+    'where.note': 'Unsere Nummer ist deutsch (+49), aber wir arbeiten in der Schweiz und feiern auch in Deutschland.',
+    'contacts.title': 'Kontakt',
+    'contacts.email': 'E-Mail',
+    'contacts.phone': 'Telefon',
+    'footer.name': 'Animationsteam',
+  },
+};
+
+const i18n = (() => {
+  function saved() {
+    try { return localStorage.getItem('lang'); } catch { return null; }
+  }
+
+  function initialLang() {
+    const fromUrl = new URLSearchParams(location.search).get('lang');
+    const pick = fromUrl || saved() || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'uk');
+    return I18N[pick] ? pick : 'uk';
+  }
+
+  let lang = initialLang();
+  const t = (key) => I18N[lang][key] ?? I18N.uk[key] ?? key;
+
+  function apply() {
+    document.documentElement.lang = lang;
+    document.title = t('meta.title');
+    document.querySelector('meta[name="description"]').content = t('meta.desc');
+    document.querySelector('meta[property="og:title"]').content = t('meta.title');
+    document.querySelector('meta[property="og:description"]').content = t('meta.desc');
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
+    document.querySelectorAll('[data-i18n-alt]').forEach((el) => el.setAttribute('alt', t(el.dataset.i18nAlt)));
+
+    const btn = document.getElementById('langToggle');
+    if (btn) {
+      btn.textContent = lang === 'uk' ? 'DE' : 'UA';
+      btn.setAttribute('aria-label', t('lang.aria'));
+    }
+    document.dispatchEvent(new Event('langchange'));
+  }
+
+  function set(next) {
+    lang = next;
+    try { localStorage.setItem('lang', lang); } catch {}
+    apply();
+  }
+
+  return { t, apply, toggle: () => set(lang === 'uk' ? 'de' : 'uk') };
+})();
