@@ -275,23 +275,26 @@ img { -webkit-user-drag: none; user-drag: none; }
 
 .lang-switch {
   display: flex;
+  gap: .35rem;
   margin-left: -.5rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  overflow: hidden;
 }
 .lang-switch button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   background: none;
-  border: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
   color: var(--muted);
-  padding: .4rem .55rem;
   font: inherit;
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .02em;
   cursor: inherit;
 }
-.lang-switch button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
 :root[data-theme="dark"] .lang-switch button[aria-pressed="true"] { color: #121214; }
 
 @media (max-width: 520px) {
@@ -314,4 +317,9 @@ img { -webkit-user-drag: none; user-drag: none; }
 .contacts a { overflow-wrap: anywhere; min-width: 0; }
 @media (max-width: 520px) {
   .contacts span { min-width: 5rem; }
+}
+
+@media (max-width: 520px) {
+  .lang-switch { gap: .3rem; }
+  .lang-switch button { width: 32px; height: 32px; font-size: .68rem; }
 }
