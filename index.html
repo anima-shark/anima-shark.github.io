@@ -23,7 +23,11 @@
       <a href="#contacts" data-i18n="nav.contacts">Контакти</a>
     </nav>
     <button class="theme-toggle" id="musicToggle" type="button" aria-label="Увімкнути музику" aria-pressed="false">♪</button>
-    <button class="theme-toggle lang-toggle" id="langToggle" type="button" aria-label="Змінити мову">DE</button>
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Мова">
+      <button type="button" data-lang="uk" aria-pressed="true">UA</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" data-i18n-aria="theme.aria">◐</button>
   </header>
 

@@ -87,6 +87,50 @@ const I18N = {
     'contacts.phone': 'Telefon',
     'footer.name': 'Animationsteam',
   },
+  en: {
+    'meta.title': "Animation Team – Children's Parties",
+    'meta.desc': "A team of four animators: children's parties in Switzerland and Germany, in Ukrainian and German.",
+    'logo.aria': 'Back to top',
+    'logo.alt': 'Shark logo',
+    'logo.text': 'Animators',
+    'nav.aria': 'Main navigation',
+    'nav.about': 'About us',
+    'nav.services': 'Services',
+    'nav.contacts': 'Contact',
+    'music.on': 'Turn music on',
+    'music.off': 'Turn music off',
+    'theme.aria': 'Switch theme',
+    'lang.aria': 'Language',
+    'hero.eyebrow': 'Hi, we are the',
+    'hero.title': 'Animation Team',
+    'hero.lead': "There are four of us, and we host children's parties full of games, contests and good vibes.",
+    'hero.btn': 'Book a party',
+    'about.title': 'About us',
+    'about.text': 'We are a team of four animators and we are just getting started. Every party is special to us, so we prepare carefully and put our whole heart into it.',
+    'services.title': 'Services',
+    'services.base.title': 'Included in the program',
+    'services.base.note': 'The foundation of every party we host',
+    'services.base.1': 'Hosting the party',
+    'services.base.2': 'Games with the kids',
+    'services.extra.title': 'Extra charge',
+    'services.extra.note': 'Booked separately',
+    'services.extra.1': 'Decorating the venue',
+    'services.extra.2': 'Cleaning up after the party',
+    'services.style.title': 'Party theme',
+    'services.style.note': "Tailored to your child's tastes",
+    'services.style.text': 'We offer a variety of party themes so the party is exactly what your child dreams of.',
+    'services.price': 'Please ask about the price of extra services when booking.',
+    'where.title': 'Where and in which language',
+    'where.countries.l': 'Countries',
+    'where.countries.v': 'Switzerland and Germany',
+    'where.langs.l': 'Languages',
+    'where.langs.v': 'Ukrainian, German',
+    'where.note': 'Our phone number is German (+49), but we work in Switzerland and also host parties in Germany.',
+    'contacts.title': 'Contact',
+    'contacts.email': 'Email',
+    'contacts.phone': 'Phone',
+    'footer.name': 'Animation Team',
+  },
 };
 
 const i18n = (() => {
@@ -96,7 +140,8 @@ const i18n = (() => {
 
   function initialLang() {
     const fromUrl = new URLSearchParams(location.search).get('lang');
-    const pick = fromUrl || saved() || ((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'uk');
+    const browser = (navigator.language || '').toLowerCase().slice(0, 2);
+    const pick = fromUrl || saved() || (I18N[browser] && browser !== 'uk' ? browser : 'uk');
     return I18N[pick] ? pick : 'uk';
   }
 
@@ -114,10 +159,10 @@ const i18n = (() => {
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
     document.querySelectorAll('[data-i18n-alt]').forEach((el) => el.setAttribute('alt', t(el.dataset.i18nAlt)));
 
-    const btn = document.getElementById('langToggle');
-    if (btn) {
-      btn.textContent = lang === 'uk' ? 'DE' : 'UA';
-      btn.setAttribute('aria-label', t('lang.aria'));
+    const group = document.getElementById('langSwitch');
+    if (group) {
+      group.setAttribute('aria-label', t('lang.aria'));
+      group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     }
     document.dispatchEvent(new Event('langchange'));
   }
@@ -128,5 +173,5 @@ const i18n = (() => {
     apply();
   }
 
-  return { t, apply, toggle: () => set(lang === 'uk' ? 'de' : 'uk') };
+  return { t, apply, set };
 })();

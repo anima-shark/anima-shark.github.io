@@ -272,14 +272,33 @@ img { -webkit-user-drag: none; user-drag: none; }
 .price-note { margin: 1rem 0 0; color: var(--muted); font-size: .9rem; }
 
 .contacts .v { color: inherit; min-width: 0; }
-.lang-toggle { font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
-#langToggle { margin-left: -.5rem; }
+
+.lang-switch {
+  display: flex;
+  margin-left: -.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lang-switch button {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  padding: .4rem .55rem;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: inherit;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+:root[data-theme="dark"] .lang-switch button[aria-pressed="true"] { color: #121214; }
 
 @media (max-width: 520px) {
   .header { gap: .5rem; }
   .nav { gap: .55rem; font-size: .8rem; }
   .theme-toggle { width: 32px; height: 32px; font-size: 1rem; }
-  #musicToggle, #langToggle { margin-left: 0; }
+  #musicToggle, .lang-switch { margin-left: 0; }
   .logo img { height: 36px; }
 }
 

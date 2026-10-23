@@ -129,7 +129,10 @@ function updateMusicLabel() {
 
 document.addEventListener('langchange', updateMusicLabel);
 
-document.getElementById('langToggle').addEventListener('click', () => i18n.toggle());
+document.getElementById('langSwitch').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-lang]');
+  if (btn) i18n.set(btn.dataset.lang);
+});
 i18n.apply();
 
 musicBtn.addEventListener('click', async () => {
