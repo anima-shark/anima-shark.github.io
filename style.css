@@ -414,3 +414,11 @@ button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
   background: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 55%, #6228d7 100%);
   bottom: calc(1rem + 2 * (56px + .75rem));
 }
+
+@media (max-width: 360px) {
+  .header { gap: .35rem; padding-inline: .7rem; }
+  .logo img { height: 30px; }
+  .theme-toggle { width: 28px; height: 28px; font-size: .9rem; }
+  .lang-switch { gap: .2rem; }
+  .lang-switch button { width: 28px; height: 28px; font-size: .62rem; }
+}
