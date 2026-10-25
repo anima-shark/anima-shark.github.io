@@ -40,6 +40,8 @@ const I18N = {
     'contacts.title': 'Контакти',
     'contacts.email': 'Email',
     'contacts.phone': 'Телефон',
+    'wa.aria': 'Написати у WhatsApp',
+    'wa.msg': 'Привіт! Хочу замовити свято.',
     'footer.name': 'Команда аніматорів',
   },
   de: {
@@ -83,6 +85,8 @@ const I18N = {
     'contacts.title': 'Kontakt',
     'contacts.email': 'E-Mail',
     'contacts.phone': 'Telefon',
+    'wa.aria': 'Per WhatsApp schreiben',
+    'wa.msg': 'Hallo! Ich möchte ein Fest anfragen.',
     'footer.name': 'Animationsteam',
   },
   en: {
@@ -126,6 +130,8 @@ const I18N = {
     'contacts.title': 'Contact',
     'contacts.email': 'Email',
     'contacts.phone': 'Phone',
+    'wa.aria': 'Message us on WhatsApp',
+    'wa.msg': "Hi! I'd like to book a party.",
     'footer.name': 'Animation Team',
   },
 };
@@ -154,6 +160,9 @@ const i18n = (() => {
 
     document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
+    document.querySelectorAll('[data-wa]').forEach((el) => {
+      el.href = `https://wa.me/${el.dataset.wa}?text=${encodeURIComponent(t('wa.msg'))}`;
+    });
     document.querySelectorAll('[data-i18n-alt]').forEach((el) => el.setAttribute('alt', t(el.dataset.i18nAlt)));
 
     const group = document.getElementById('langSwitch');
