@@ -405,3 +405,7 @@ img { -webkit-user-drag: none; user-drag: none; }
 .overlay p { margin: 0; max-width: 28rem; white-space: pre-line; }
 button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
 .section .btn { margin-top: .6rem; }
+
+/* у грі курсор звичайний */
+.stage, .stage * { cursor: default; }
+.stage .btn { cursor: pointer; }
