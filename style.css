@@ -341,3 +341,5 @@ img { -webkit-user-drag: none; user-drag: none; }
 }
 .wa-fab:hover { transform: scale(1.08); text-decoration: none; }
 .wa-fab svg { width: 30px; height: 30px; }
+
+.tg-fab { background: #26a5e4; bottom: calc(1rem + 56px + .75rem); }
