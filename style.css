@@ -362,3 +362,5 @@ img { -webkit-user-drag: none; user-drag: none; }
 }
 :root[data-theme="dark"] .steps li::before { color: #121214; }
 .steps p { margin: .2rem 0 0; color: var(--muted); }
+
+.card.wide { grid-column: 1 / -1; }
