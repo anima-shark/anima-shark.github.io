@@ -409,3 +409,8 @@ button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
 /* у грі курсор звичайний */
 .stage, .stage * { cursor: default; }
 .stage .btn { cursor: pointer; }
+
+.ig-fab {
+  background: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 55%, #6228d7 100%);
+  bottom: calc(1rem + 2 * (56px + .75rem));
+}
