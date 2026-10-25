@@ -343,3 +343,22 @@ img { -webkit-user-drag: none; user-drag: none; }
 .wa-fab svg { width: 30px; height: 30px; }
 
 .tg-fab { background: #26a5e4; bottom: calc(1rem + 56px + .75rem); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; counter-reset: step; }
+.steps li { position: relative; padding-left: 3rem; counter-increment: step; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+:root[data-theme="dark"] .steps li::before { color: #121214; }
+.steps p { margin: .2rem 0 0; color: var(--muted); }
