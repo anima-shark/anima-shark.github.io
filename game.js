@@ -41,6 +41,8 @@ let last = 0;
 let best = 0;
 let newBest = false;
 let lastResult = null;
+let flash = 0;
+const FAKE_PENALTY = 3;
 
 try { best = Number(localStorage.getItem('sharkBest')) || 0; } catch {}
 bestEl.textContent = best;
@@ -73,6 +75,7 @@ const isLight = () => root.dataset.theme === 'light';
 function spawnBubble() {
   const r = rand(26, 52);
   const ramp = 1 + (ROUND_SECONDS - timeLeft) / ROUND_SECONDS * 0.6;
+  const fake = state === 'play' && bubbles.filter((b) => b.fake).length < 2 && Math.random() < 0.15;
   bubbles.push({
     x: rand(r, W - r),
     y: H + r,
@@ -81,6 +84,7 @@ function spawnBubble() {
     phase: rand(0, Math.PI * 2),
     sway: rand(10, 30),
     baseX: 0,
+    fake,
   });
   bubbles[bubbles.length - 1].baseX = bubbles[bubbles.length - 1].x;
 }
@@ -140,8 +144,16 @@ canvas.addEventListener('pointerdown', (e) => {
     const d = Math.hypot(p.x - b.x, p.y - b.y);
     if (d <= b.r + 10) {
       bubbles.splice(i, 1);
-      addScore(1, b.x, b.y - b.r);
-      burst(b.x, b.y, isLight() ? ['#2496f0', '#9bd6ff'] : ['#ffffff', '#cfeaff'], 9, 150);
+      if (b.fake) {
+        score = Math.max(0, score - FAKE_PENALTY);
+        scoreEl.textContent = score;
+        floaters.push({ x: b.x, y: b.y - b.r, text: `-${FAKE_PENALTY}`, life: 0.9, big: true, color: '#ff4d6d' });
+        burst(b.x, b.y, ['#ff4d6d', '#ff8fa3', '#ffd0d9'], 16, 220);
+        flash = 0.35;
+      } else {
+        addScore(1, b.x, b.y - b.r);
+        burst(b.x, b.y, isLight() ? ['#2496f0', '#9bd6ff'] : ['#ffffff', '#cfeaff'], 9, 150);
+      }
       return;
     }
   }
@@ -158,6 +170,7 @@ function startGame() {
   spawnTimer = 0;
   sharkTimer = rand(4, 7);
   newBest = false;
+  flash = 0;
   scoreEl.textContent = 0;
   timeEl.textContent = ROUND_SECONDS;
   overlay.hidden = true;
@@ -224,6 +237,7 @@ function update(dt) {
 
   particles.forEach((p) => { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 260 * dt; p.life -= dt; });
   particles = particles.filter((p) => p.life > 0);
+  flash = Math.max(0, flash - dt * 1.2);
   floaters.forEach((f) => { f.y -= 45 * dt; f.life -= dt; });
   floaters = floaters.filter((f) => f.life > 0);
 }
@@ -254,7 +268,31 @@ function drawSea() {
   ctx.fill();
 }
 
+function drawFake(b) {
+  const pulse = 1 + Math.sin(b.phase * 2) * 0.05;
+  const r = b.r * pulse;
+  const g = ctx.createRadialGradient(b.x - r * 0.3, b.y - r * 0.3, r * 0.1, b.x, b.y, r);
+  g.addColorStop(0, 'rgba(255,200,210,.95)');
+  g.addColorStop(0.55, 'rgba(255,77,109,.75)');
+  g.addColorStop(1, 'rgba(190,20,60,.85)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, Math.PI * 2); ctx.fill();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#ffffff';
+  ctx.stroke();
+  const k = r * 0.38;
+  ctx.lineWidth = Math.max(4, r * 0.18);
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.moveTo(b.x - k, b.y - k); ctx.lineTo(b.x + k, b.y + k);
+  ctx.moveTo(b.x + k, b.y - k); ctx.lineTo(b.x - k, b.y + k);
+  ctx.stroke();
+  ctx.lineCap = 'butt';
+}
+
 function drawBubble(b) {
+  if (b.fake) { drawFake(b); return; }
   const light = isLight();
   const g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.35, b.r * 0.1, b.x, b.y, b.r);
   g.addColorStop(0, light ? 'rgba(210,240,255,.95)' : 'rgba(255,255,255,.9)');
@@ -313,10 +351,15 @@ function draw() {
     ctx.lineWidth = 4;
     ctx.strokeStyle = 'rgba(0,0,0,.45)';
     ctx.strokeText(f.text, f.x, f.y);
-    ctx.fillStyle = f.big ? '#ffd93d' : '#ffffff';
+    ctx.fillStyle = f.color || (f.big ? '#ffd93d' : '#ffffff');
     ctx.fillText(f.text, f.x, f.y);
   });
   ctx.globalAlpha = 1;
+
+  if (flash > 0) {
+    ctx.fillStyle = `rgba(255, 40, 70, ${flash})`;
+    ctx.fillRect(0, 0, W, H);
+  }
 }
 
 function frame(ts) {
