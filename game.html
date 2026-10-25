@@ -9,7 +9,7 @@
   <meta property="og:description" content="Проста гра для дітей: лопай бульбашки та лови акулу в ковпачку.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="stylesheet" href="style.css?v=20261038">
+  <link rel="stylesheet" href="style.css?v=20261039">
 </head>
 <body>
   <header class="header">
@@ -24,7 +24,6 @@
       <button type="button" data-lang="uk" aria-pressed="true">UA</button>
       <button type="button" data-lang="de" aria-pressed="false">DE</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
     </div>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" data-i18n-aria="theme.aria">◐</button>
   </header>
@@ -33,6 +32,8 @@
     <section class="section game-wrap">
       <h1 class="game-title" data-i18n="game.page.title">Гра «Акула та бульбашки»</h1>
       <p class="price-note" data-i18n="game.hint">Торкайся бульбашок, щоб їх лопнути! Акула в ковпачку дає +5. Червоні бульбашки з хрестиком не чіпай: вони забирають бали.</p>
+
+      <p class="goal" id="goalText"></p>
 
       <div class="hud">
         <div><span data-i18n="game.score">Очки</span> <b id="score">0</b></div>
@@ -46,6 +47,7 @@
           <h2 id="overlayTitle" data-i18n="game.page.title">Гра «Акула та бульбашки»</h2>
           <p id="overlayText" data-i18n="game.hint">Торкайся бульбашок, щоб їх лопнути! Акула в ковпачку дає +5. Червоні бульбашки з хрестиком не чіпай: вони забирають бали.</p>
           <button class="btn" id="startBtn" type="button" data-i18n="game.start">Грати</button>
+          <a class="btn" id="discountBtn" href="#" target="_blank" rel="noopener" hidden data-i18n="game.discount.btn">Забрати знижку у WhatsApp</a>
         </div>
       </div>
     </section>
@@ -55,7 +57,7 @@
     <p>© <span id="year"></span> <span data-i18n="footer.name">Happy Team</span></p>
   </footer>
 
-  <script src="i18n.js?v=20261038"></script>
-  <script src="game.js?v=20261038"></script>
+  <script src="i18n.js?v=20261039"></script>
+  <script src="game.js?v=20261039"></script>
 </body>
 </html>

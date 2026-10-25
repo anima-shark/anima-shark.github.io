@@ -16,6 +16,8 @@ function setupSize() {
 }
 setupSize();
 const ROUND_SECONDS = 45;
+const DISCOUNT_SCORE = 50; // поріг знижки 10%: підлаштуйте після тесту з дітьми
+const WHATSAPP = '41764929764';
 
 const scoreEl = document.getElementById('score');
 const timeEl = document.getElementById('time');
@@ -24,6 +26,8 @@ const overlay = document.getElementById('overlay');
 const overlayTitle = document.getElementById('overlayTitle');
 const overlayText = document.getElementById('overlayText');
 const startBtn = document.getElementById('startBtn');
+const discountBtn = document.getElementById('discountBtn');
+const goalEl = document.getElementById('goalText');
 
 const sharkImg = new Image();
 sharkImg.src = 'logo.svg';
@@ -62,7 +66,12 @@ document.getElementById('langSwitch').addEventListener('click', (e) => {
   if (btn) i18n.set(btn.dataset.lang);
 });
 document.getElementById('year').textContent = new Date().getFullYear();
+function renderGoal() {
+  goalEl.textContent = i18n.t('game.goal').replace('{n}', DISCOUNT_SCORE);
+}
+
 document.addEventListener('langchange', () => {
+  renderGoal();
   canvas.setAttribute('aria-label', i18n.t('game.canvas'));
   if (state === 'over') showResult();
 });
@@ -161,6 +170,7 @@ canvas.addEventListener('pointerdown', (e) => {
 
 function startGame() {
   setupSize();
+  discountBtn.hidden = true;
   bubbles = [];
   particles = [];
   floaters = [];
@@ -179,7 +189,15 @@ function startGame() {
 
 function showResult() {
   overlayTitle.textContent = i18n.t('game.over');
-  overlayText.textContent = `${i18n.t('game.result')}: ${lastResult}` + (newBest ? `\n${i18n.t('game.newbest')}` : '');
+  const won = lastResult >= DISCOUNT_SCORE;
+  overlayText.textContent = `${i18n.t('game.result')}: ${lastResult}`
+    + (newBest ? `\n${i18n.t('game.newbest')}` : '')
+    + `\n${won ? i18n.t('game.won') : i18n.t('game.goal').replace('{n}', DISCOUNT_SCORE)}`;
+  discountBtn.hidden = !won;
+  if (won) {
+    const msg = i18n.t('game.discount.msg').replace('{n}', lastResult);
+    discountBtn.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  }
   startBtn.textContent = i18n.t('game.again');
   overlay.hidden = false;
 }

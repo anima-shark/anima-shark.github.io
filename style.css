@@ -422,3 +422,6 @@ button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
   .lang-switch { gap: .2rem; }
   .lang-switch button { width: 28px; height: 28px; font-size: .62rem; }
 }
+
+.goal { margin: .2rem 0 .4rem; font-weight: 600; color: var(--accent); }
+#discountBtn[hidden] { display: none; }
