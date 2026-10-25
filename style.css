@@ -234,8 +234,8 @@ main, .footer { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
   .pop-bubble { display: none; }
 }
 
-html, body { cursor: url("submarine.svg") 43 19, auto; }
-a, button { cursor: url("submarine.svg") 43 19, pointer; }
+html, body { cursor: url("submarine.svg") 5 19, auto; }
+a, button { cursor: url("submarine.svg") 5 19, pointer; }
 
 body {
   -webkit-user-select: none;

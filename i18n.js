@@ -296,8 +296,10 @@ const i18n = (() => {
 
   function initialLang() {
     const fromUrl = new URLSearchParams(location.search).get('lang');
-    const browser = (navigator.language || '').toLowerCase().slice(0, 2);
-    const pick = fromUrl || saved() || (I18N[browser] && browser !== 'uk' ? browser : 'uk');
+    const preferred = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''])
+      .map((l) => l.toLowerCase().slice(0, 2))
+      .find((l) => I18N[l]);
+    const pick = fromUrl || saved() || preferred || 'de';
     return I18N[pick] ? pick : 'uk';
   }
 
