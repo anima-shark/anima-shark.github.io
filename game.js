@@ -16,7 +16,7 @@ function setupSize() {
 }
 setupSize();
 const ROUND_SECONDS = 45;
-const DISCOUNT_SCORE = 50; // поріг знижки 10%: підлаштуйте після тесту з дітьми
+const DISCOUNT_SCORE = 100; // поріг знижки 10%: підлаштуйте після тесту з дітьми
 const WHATSAPP = '41764929764';
 
 const scoreEl = document.getElementById('score');
