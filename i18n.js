@@ -53,6 +53,21 @@ const I18N = {
     'how.2.d': 'Розкажіть про дитину, її вік і яким має бути стиль свята.',
     'how.3.t': 'Домовтеся про оплату',
     'how.3.d': 'Оплата за домовленістю, додаткові послуги обговорюємо окремо.',
+    'game.page.title': 'Гра «Акула та бульбашки»',
+    'game.page.desc': 'Проста гра для дітей: лопай бульбашки та лови акулу в ковпачку.',
+    'game.back': '← На сайт',
+    'game.hint': 'Торкайся бульбашок, щоб їх лопнути! Акула в ковпачку дає +5.',
+    'game.score': 'Очки',
+    'game.time': 'Час',
+    'game.best': 'Рекорд',
+    'game.start': 'Грати',
+    'game.again': 'Ще раз',
+    'game.over': 'Час вийшов!',
+    'game.result': 'Твій результат',
+    'game.newbest': 'Новий рекорд! 🎉',
+    'game.canvas': 'Гра: лопай бульбашки',
+    'game.link.title': 'Пограйте з нами',
+    'game.link.text': 'Проста гра для дітей: лопайте бульбашки й ловіть акулу в ковпачку.',
     'footer.name': 'Команда аніматорів',
   },
   de: {
@@ -109,6 +124,21 @@ const I18N = {
     'how.2.d': 'Erzählen Sie uns von Ihrem Kind, dem Alter und dem gewünschten Festthema.',
     'how.3.t': 'Bezahlung vereinbaren',
     'how.3.d': 'Die Bezahlung erfolgt nach Vereinbarung, Zusatzleistungen besprechen wir separat.',
+    'game.page.title': 'Spiel „Hai und Blasen“',
+    'game.page.desc': 'Ein einfaches Spiel für Kinder: Platze Blasen und fange den Hai mit Partyhut.',
+    'game.back': '← Zur Website',
+    'game.hint': 'Tippe auf die Blasen, um sie platzen zu lassen! Der Hai mit Partyhut bringt +5.',
+    'game.score': 'Punkte',
+    'game.time': 'Zeit',
+    'game.best': 'Rekord',
+    'game.start': 'Spielen',
+    'game.again': 'Nochmal',
+    'game.over': 'Zeit ist um!',
+    'game.result': 'Dein Ergebnis',
+    'game.newbest': 'Neuer Rekord! 🎉',
+    'game.canvas': 'Spiel: Blasen platzen lassen',
+    'game.link.title': 'Spielen Sie mit uns',
+    'game.link.text': 'Ein einfaches Spiel für Kinder: Blasen platzen lassen und den Hai mit Partyhut fangen.',
     'footer.name': 'Animationsteam',
   },
   en: {
@@ -165,6 +195,21 @@ const I18N = {
     'how.2.d': 'Tell us about your child, their age and the party theme you want.',
     'how.3.t': 'Agree on payment',
     'how.3.d': 'Payment is by arrangement; extra services are discussed separately.',
+    'game.page.title': 'Game “Shark and Bubbles”',
+    'game.page.desc': 'A simple game for kids: pop bubbles and catch the shark in the party hat.',
+    'game.back': '← Back to site',
+    'game.hint': 'Tap the bubbles to pop them! The shark in the party hat gives +5.',
+    'game.score': 'Score',
+    'game.time': 'Time',
+    'game.best': 'Best',
+    'game.start': 'Play',
+    'game.again': 'Play again',
+    'game.over': "Time's up!",
+    'game.result': 'Your score',
+    'game.newbest': 'New best! 🎉',
+    'game.canvas': 'Game: pop the bubbles',
+    'game.link.title': 'Play with us',
+    'game.link.text': 'A simple game for kids: pop bubbles and catch the shark in the party hat.',
     'footer.name': 'Animation Team',
   },
 };
@@ -186,10 +231,12 @@ const i18n = (() => {
 
   function apply() {
     document.documentElement.lang = lang;
-    document.title = t('meta.title');
-    document.querySelector('meta[name="description"]').content = t('meta.desc');
-    document.querySelector('meta[property="og:title"]').content = t('meta.title');
-    document.querySelector('meta[property="og:description"]').content = t('meta.desc');
+    const titleKey = document.documentElement.dataset.titleKey || 'meta.title';
+    const descKey = document.documentElement.dataset.descKey || 'meta.desc';
+    document.title = t(titleKey);
+    document.querySelector('meta[name="description"]').content = t(descKey);
+    document.querySelector('meta[property="og:title"]').content = t(titleKey);
+    document.querySelector('meta[property="og:description"]').content = t(descKey);
 
     document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.i18nAria)));

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="uk" data-theme="dark" data-title-key="game.page.title" data-desc-key="game.page.desc">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Гра «Акула та бульбашки»</title>
+  <meta name="description" content="Проста гра для дітей: лопай бульбашки та лови акулу в ковпачку.">
+  <meta property="og:title" content="Гра «Акула та бульбашки»">
+  <meta property="og:description" content="Проста гра для дітей: лопай бульбашки та лови акулу в ковпачку.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="style.css?v=20261031">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="На початок" data-i18n-aria="logo.aria">
+      <img src="logo.svg" alt="Логотип акули" data-i18n-alt="logo.alt" width="82" height="44">
+      <span data-i18n="logo.text">Аніматори</span>
+    </a>
+    <nav class="nav" aria-label="Основна навігація" data-i18n-aria="nav.aria">
+      <a href="index.html" data-i18n="game.back">← На сайт</a>
+    </nav>
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Мова">
+      <button type="button" data-lang="uk" aria-pressed="true">UA</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" data-i18n-aria="theme.aria">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="section game-wrap">
+      <h1 class="game-title" data-i18n="game.page.title">Гра «Акула та бульбашки»</h1>
+      <p class="price-note" data-i18n="game.hint">Торкайся бульбашок, щоб їх лопнути! Акула в ковпачку дає +5.</p>
+
+      <div class="hud">
+        <div><span data-i18n="game.score">Очки</span> <b id="score">0</b></div>
+        <div><span data-i18n="game.time">Час</span> <b id="time">45</b></div>
+        <div><span data-i18n="game.best">Рекорд</span> <b id="best">0</b></div>
+      </div>
+
+      <div class="stage">
+        <canvas id="game" width="1600" height="1000" aria-label="Гра: лопай бульбашки" role="img"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="overlayTitle" data-i18n="game.page.title">Гра «Акула та бульбашки»</h2>
+          <p id="overlayText" data-i18n="game.hint">Торкайся бульбашок, щоб їх лопнути! Акула в ковпачку дає +5.</p>
+          <button class="btn" id="startBtn" type="button" data-i18n="game.start">Грати</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <span data-i18n="footer.name">Команда аніматорів</span></p>
+  </footer>
+
+  <script src="i18n.js?v=20261031"></script>
+  <script src="game.js?v=20261031"></script>
+</body>
+</html>
