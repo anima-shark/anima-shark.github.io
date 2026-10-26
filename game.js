@@ -17,7 +17,7 @@ function setupSize() {
 setupSize();
 const ROUND_SECONDS = 45;
 const DISCOUNT_SCORE = 150; // поріг знижки 10% (після нових балів 100 стало замало): підлаштуйте після тесту з дітьми
-const WHATSAPP = '380966218605';
+const WHATSAPP = '41764929764';
 
 const scoreEl = document.getElementById('score');
 const timeEl = document.getElementById('time');
