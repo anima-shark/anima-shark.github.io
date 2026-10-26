@@ -1,113 +1,196 @@
 <!doctype html>
-<html lang="uk" data-theme="dark">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Team — дитячі свята</title>
-  <meta name="description" content="Команда з чотирьох аніматорів: дитячі свята в Цюриху та Цюрихському кантоні українською та німецькою мовами.">
-  <meta property="og:title" content="Happy Team — дитячі свята">
-  <meta property="og:description" content="Команда з чотирьох аніматорів: дитячі свята в Цюриху та Цюрихському кантоні українською та німецькою мовами.">
+  <title>Happy Team – Kinderfeste</title>
+  <meta name="description" content="Ein Team aus vier Animateuren: Kinderfeste in der Stadt und im Kanton Zürich auf Ukrainisch und Deutsch.">
+  <meta property="og:title" content="Happy Team – Kinderfeste">
+  <meta property="og:description" content="Ein Team aus vier Animateuren: Kinderfeste in der Stadt und im Kanton Zürich auf Ukrainisch und Deutsch.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://anima-shark.github.io/">
+  <meta property="og:site_name" content="Happy Team">
+  <meta property="og:image" content="https://anima-shark.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://anima-shark.github.io/">
+  <link rel="alternate" hreflang="uk" href="https://anima-shark.github.io/?lang=uk">
+  <link rel="alternate" hreflang="de" href="https://anima-shark.github.io/?lang=de">
+  <link rel="alternate" hreflang="en" href="https://anima-shark.github.io/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://anima-shark.github.io/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EntertainmentBusiness", "name": "Happy Team", "description": "Ein Team aus vier Animateuren: Kinderfeste in der Stadt und im Kanton Zürich auf Ukrainisch und Deutsch.", "url": "https://anima-shark.github.io/", "image": "https://anima-shark.github.io/og-image.png", "email": "sophiaprytula@gmail.com", "telephone": "+4915120163247", "areaServed": [{"@type": "City", "name": "Zürich"}, {"@type": "AdministrativeArea", "name": "Kanton Zürich"}], "availableLanguage": ["uk", "de"], "priceRange": "CHF 50–60 pro Stunde und Animateur", "sameAs": ["https://www.instagram.com/anima_teams/", "https://t.me/gingzuh"]}</script>
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <script>document.documentElement.classList.add("i18n-pending");setTimeout(function(){document.documentElement.classList.remove("i18n-pending")},2500)</script>
-  <link rel="stylesheet" href="style.css?v=20261046">
+  <link rel="stylesheet" href="style.css?v=20261050">
 </head>
 <body>
   <header class="header">
-    <a class="logo" href="#top" aria-label="На початок" data-i18n-aria="logo.aria">
-      <img src="logo.svg" alt="Логотип акули" data-i18n-alt="logo.alt" width="82" height="44">
+    <a class="logo" href="#top" aria-label="Zum Seitenanfang" data-i18n-aria="logo.aria">
+      <img src="logo.svg" alt="Haifisch-Logo" data-i18n-alt="logo.alt" width="82" height="44">
       <span data-i18n="logo.text">Happy Team</span>
     </a>
-    <nav class="nav" aria-label="Основна навігація" data-i18n-aria="nav.aria">
-      <a href="#about" data-i18n="nav.about">Про нас</a>
-      <a href="#services" data-i18n="nav.services">Послуги</a>
-      <a href="#contacts" data-i18n="nav.contacts">Контакти</a>
+    <nav class="nav" aria-label="Hauptnavigation" data-i18n-aria="nav.aria">
+      <a href="#about" data-i18n="nav.about">Über uns</a>
+      <a href="#services" data-i18n="nav.services">Leistungen</a>
+      <a href="#contacts" data-i18n="nav.contacts">Kontakt</a>
     </nav>
     <button class="theme-toggle" id="musicToggle" type="button" aria-label="Увімкнути музику" aria-pressed="false">♪</button>
     <div class="lang-switch" id="langSwitch" role="group" aria-label="Мова">
-      <button type="button" data-lang="uk" aria-pressed="true">UA</button>
-      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" data-i18n-aria="theme.aria">◐</button>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Design wechseln" data-i18n-aria="theme.aria">◐</button>
   </header>
 
   <main id="top">
     <section class="hero">
-      <p class="eyebrow" data-i18n="hero.eyebrow">Привіт, ми</p>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Hallo, wir sind das</p>
       <h1 data-i18n="hero.title">Happy Team</h1>
-      <p class="lead" data-i18n="hero.lead">Нас четверо, і ми влаштовуємо дитячі свята з іграми, конкурсами та хорошим настроєм.</p>
-      <a class="btn" href="#contacts" data-i18n="hero.btn">Замовити свято</a>
+      <p class="lead" data-i18n="hero.lead">Wir sind zu viert und gestalten Kinderfeste mit Spielen, Wettbewerben und guter Laune.</p>
+      <a class="btn" href="#calc" data-i18n="hero.btn">Fest anfragen</a>
     </section>
 
     <section id="about" class="section reveal">
-      <h2 data-i18n="about.title">Про нас</h2>
-      <p data-i18n="about.text">Ми команда з чотирьох аніматорів і тільки починаємо свій шлях. Для нас кожне свято особливе, тому ми готуємося до нього уважно й вкладаємо в нього всю душу.</p>
+      <h2 data-i18n="about.title">Über uns</h2>
+      <p data-i18n="about.text">Wir sind ein Team aus vier Animateuren und stehen noch ganz am Anfang. Für uns ist jedes Fest etwas Besonderes, deshalb bereiten wir uns sorgfältig vor und geben unser ganzes Herz hinein.</p>
     </section>
 
     <section id="services" class="section reveal">
-      <h2 data-i18n="services.title">Послуги</h2>
+      <h2 data-i18n="services.title">Leistungen</h2>
       <div class="cards">
         <article class="card">
-          <h3 data-i18n="services.base.title">Входить у програму</h3>
-          <p class="card-note" data-i18n="services.base.note">Основа будь-якого нашого свята</p>
+          <h3 data-i18n="services.base.title">Im Programm enthalten</h3>
+          <p class="card-note" data-i18n="services.base.note">Die Grundlage jedes unserer Feste</p>
           <ul class="checklist base">
-            <li data-i18n="services.base.1">Проведення свята</li>
-            <li data-i18n="services.base.2">Ігри з дітьми</li>
+            <li data-i18n="services.base.1">Durchführung des Festes</li>
+            <li data-i18n="services.base.2">Spiele mit den Kindern</li>
           </ul>
-          <p class="price" data-i18n="services.base.price">50–60 CHF за годину за одного аніматора. Свято триває максимум 5 годин.</p>
+          <p class="price" data-i18n="services.base.price">50–60 CHF pro Stunde und Animateur. Das Fest dauert maximal 5 Stunden.</p>
         </article>
         <article class="card">
-          <h3 data-i18n="services.extra.title">За додаткову плату</h3>
-          <p class="card-note" data-i18n="services.extra.note">Замовляється окремо</p>
+          <h3 data-i18n="services.extra.title">Gegen Aufpreis</h3>
+          <p class="card-note" data-i18n="services.extra.note">Separat buchbar</p>
           <ul class="checklist extra">
-            <li data-i18n="services.extra.1">Прикрашання приміщення</li>
-            <li data-i18n="services.extra.2">Прибирання після свята</li>
+            <li data-i18n="services.extra.1">Dekoration der Räume</li>
+            <li data-i18n="services.extra.2">Aufräumen nach dem Fest</li>
           </ul>
-          <p class="price" data-i18n="services.extra.price">+40 CHF за годину зверху за кожну послугу.</p>
+          <p class="price" data-i18n="services.extra.price">+40 CHF pro Stunde zusätzlich je Leistung.</p>
         </article>
         <article class="card">
-          <h3 data-i18n="services.style.title">Стиль свята</h3>
-          <p class="card-note" data-i18n="services.style.note">Під вподобання вашої дитини</p>
-          <p data-i18n="services.style.text">Підбираємо різні стилі свят так, щоб воно було саме таким, як мріє ваша дитина.</p>
+          <h3 data-i18n="services.style.title">Festthema</h3>
+          <p class="card-note" data-i18n="services.style.note">Nach den Wünschen Ihres Kindes</p>
+          <p data-i18n="services.style.text">Wir bieten verschiedene Festthemen an, damit das Fest genau so wird, wie Ihr Kind es sich erträumt.</p>
         </article>
         <article class="card wide">
-          <h3 data-i18n="costumes.title">Костюми та тема свята</h3>
-          <p class="card-note" data-i18n="costumes.note">Залежить від замовника</p>
-          <p data-i18n="costumes.text">Тема свята залежить від замовника. Наразі в нас є лише надувні костюми акул, і це наша головна тема.</p>
+          <h3 data-i18n="costumes.title">Festthemen</h3>
+          <p class="card-note" data-i18n="costumes.note">Wählen Sie aus unserer Liste oder schlagen Sie eigene vor</p>
+          <p data-i18n="costumes.text">Haie (unsere aufblasbaren Kostüme), Minecraft, Roblox, Superhelden, Piraten, Dinosaurier, Einhörner und Prinzessinnen oder Ihre eigene Idee. Für Themen außer Haien stimmen wir Kostüme und Requisiten vorab ab.</p>
         </article>
       </div>
-      <p class="price-note" data-i18n="services.price">Приклад: 2 аніматори на 4 години коштують 400–480 CHF. Остаточну вартість узгоджуємо заздалегідь.</p>
+      <p class="price-note" data-i18n="services.price">Beispiel: 2 Animateure für 4 Stunden kosten 400–480 CHF. Den genauen Preis vereinbaren wir vorab.</p>
+    </section>
+
+    <section id="calc" class="section reveal">
+      <h2 data-i18n="calc.title">Festpreis berechnen</h2>
+      <p data-i18n="calc.lead">Wählen Sie die Angaben, wir berechnen einen Richtpreis. Dann senden Sie die Anfrage mit einem Klick.</p>
+      <form id="calcForm" class="calc-form" autocomplete="off">
+        <label class="field"><span data-i18n="calc.date">Datum des Festes</span><input id="cDate" type="date"></label>
+        <label class="field"><span data-i18n="calc.kids">Anzahl Kinder</span><input id="cKids" type="number" min="1" max="40" value="10" inputmode="numeric"></label>
+        <label class="field"><span data-i18n="calc.age">Alter des Kindes</span>
+          <select id="cAge"><option>3–4</option><option selected>5–6</option><option>7–8</option><option>9–10</option><option>11+</option></select>
+        </label>
+        <label class="field"><span data-i18n="calc.theme">Festthema</span>
+          <select id="cTheme">
+            <option value="shark" data-i18n="th.shark.name">Haie</option>
+            <option value="minecraft" data-i18n="th.minecraft.name">Minecraft</option>
+            <option value="roblox" data-i18n="th.roblox.name">Roblox</option>
+            <option value="superheroes" data-i18n="th.superheroes.name">Superhelden</option>
+            <option value="pirates" data-i18n="th.pirates.name">Piraten</option>
+            <option value="dinosaurs" data-i18n="th.dinosaurs.name">Dinosaurier</option>
+            <option value="other" data-i18n="calc.theme.other">Anderes Thema oder eigene Idee</option>
+          </select>
+        </label>
+        <label class="field"><span data-i18n="calc.animators">Anzahl Animateure</span>
+          <select id="cAnimators"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+        </label>
+        <label class="field"><span data-i18n="calc.hours">Anzahl Stunden (maximal 5)</span>
+          <select id="cHours"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select>
+        </label>
+        <fieldset class="field extras">
+          <legend data-i18n="calc.extras">Zusätzlich</legend>
+          <label class="check"><input id="cDeco" type="checkbox"> <span data-i18n="services.extra.1">Dekoration der Räume</span></label>
+          <label class="check"><input id="cClean" type="checkbox"> <span data-i18n="services.extra.2">Aufräumen nach dem Fest</span></label>
+        </fieldset>
+      </form>
+      <p class="calc-result"><span data-i18n="calc.result">Richtpreis</span> <strong id="cResult">400–480 CHF</strong></p>
+      <p class="price-note" data-i18n="calc.note">Richtwert: 50–60 CHF pro Stunde und Animateur, Zuschlag 40 CHF pro Stunde für jede Zusatzleistung. Den genauen Preis vereinbaren wir vorab.</p>
+      <div class="calc-actions">
+        <a id="cWa" class="btn" href="#" target="_blank" rel="noopener" data-i18n="calc.send.wa">Anfrage per WhatsApp senden</a>
+        <a id="cMail" class="btn btn-ghost" href="#" data-i18n="calc.send.mail">Per E-Mail senden</a>
+      </div>
+    </section>
+
+    <section id="themes" class="section reveal">
+      <h2 data-i18n="th.section.title">Festthemen</h2>
+      <p data-i18n="th.section.lead">Wählen Sie ein Thema, wir bereiten Spiele und Rätselrallyes in diesem Stil vor.</p>
+      <div class="cards">
+        <a class="card" href="theme-shark.html">
+          <h3 data-i18n="th.shark.name">Haie</h3>
+          <p data-i18n="th.shark.card">Unser Hauptthema: aufblasbare Haifisch-Kostüme.</p>
+        </a>
+        <a class="card" href="theme-minecraft.html">
+          <h3 data-i18n="th.minecraft.name">Minecraft</h3>
+          <p data-i18n="th.minecraft.card">Rätsel und Aufgaben in der Würfelwelt.</p>
+        </a>
+        <a class="card" href="theme-roblox.html">
+          <h3 data-i18n="th.roblox.name">Roblox</h3>
+          <p data-i18n="th.roblox.card">Staffeln, Hindernisse und Teammissionen.</p>
+        </a>
+        <a class="card" href="theme-superheroes.html">
+          <h3 data-i18n="th.superheroes.name">Superhelden</h3>
+          <p data-i18n="th.superheroes.card">Training, Prüfungen und die Rettung der Stadt.</p>
+        </a>
+        <a class="card" href="theme-pirates.html">
+          <h3 data-i18n="th.pirates.name">Piraten</h3>
+          <p data-i18n="th.pirates.card">Schatzsuche mit Karte und Piratenwettbewerbe.</p>
+        </a>
+        <a class="card" href="theme-dinosaurs.html">
+          <h3 data-i18n="th.dinosaurs.name">Dinosaurier</h3>
+          <p data-i18n="th.dinosaurs.card">Suche nach „versteinerten“ Eiern, Spiele und Wettbewerbe.</p>
+        </a>
+      </div>
     </section>
 
     <section id="how" class="section reveal">
-      <h2 data-i18n="how.title">Як замовити</h2>
+      <h2 data-i18n="how.title">So buchen Sie</h2>
       <ol class="steps">
-        <li><strong data-i18n="how.1.t">Напишіть нам</strong><p data-i18n="how.1.d">У WhatsApp, Telegram, на пошту чи за телефоном.</p></li>
-        <li><strong data-i18n="how.2.t">Оберіть програму</strong><p data-i18n="how.2.d">Розкажіть про дитину, її вік і яким має бути стиль свята.</p></li>
-        <li><strong data-i18n="how.3.t">Домовтеся про оплату</strong><p data-i18n="how.3.d">Оплата за домовленістю, додаткові послуги обговорюємо окремо.</p></li>
+        <li><strong data-i18n="how.1.t">Schreiben Sie uns</strong><p data-i18n="how.1.d">Per WhatsApp, Telegram, E-Mail oder Telefon.</p></li>
+        <li><strong data-i18n="how.2.t">Programm wählen</strong><p data-i18n="how.2.d">Erzählen Sie uns von Ihrem Kind, dem Alter und dem gewünschten Festthema.</p></li>
+        <li><strong data-i18n="how.3.t">Bezahlung vereinbaren</strong><p data-i18n="how.3.d">Die Bezahlung erfolgt nach Vereinbarung, Zusatzleistungen besprechen wir separat.</p></li>
       </ol>
     </section>
 
     <section id="play" class="section reveal">
-      <h2 data-i18n="game.link.title">Пограйте з нами</h2>
-      <p data-i18n="game.link.text">Проста гра для дітей: лопайте бульбашки й ловіть акулу в ковпачку.</p>
-      <a class="btn" href="game.html" data-i18n="game.start">Грати</a>
+      <h2 data-i18n="game.link.title">Spielen Sie mit uns</h2>
+      <p data-i18n="game.link.text">Ein einfaches Spiel für Kinder: Blasen platzen lassen, den Hai mit Partyhut fangen und 10 % Rabatt aufs Fest gewinnen!</p>
+      <a class="btn" href="game.html" data-i18n="game.start">Spielen</a>
     </section>
 
     <section id="where" class="section reveal">
-      <h2 data-i18n="where.title">Де та якою мовою</h2>
+      <h2 data-i18n="where.title">Wo und in welcher Sprache</h2>
       <ul class="contacts">
-        <li><span data-i18n="where.countries.l">Регіон</span> <span class="v" data-i18n="where.countries.v">Цюрих і Цюрихський кантон</span></li>
-        <li><span data-i18n="where.langs.l">Мови</span> <span class="v" data-i18n="where.langs.v">Українська, Deutsch (німецька)</span></li>
+        <li><span data-i18n="where.countries.l">Region</span> <span class="v" data-i18n="where.countries.v">Stadt Zürich und Kanton Zürich</span></li>
+        <li><span data-i18n="where.langs.l">Sprachen</span> <span class="v" data-i18n="where.langs.v">Ukrainisch, Deutsch</span></li>
       </ul>
     </section>
 
     <section id="contacts" class="section reveal">
-      <h2 data-i18n="contacts.title">Контакти</h2>
+      <h2 data-i18n="contacts.title">Kontakt</h2>
       <ul class="contacts">
-        <li><span data-i18n="contacts.email">Email</span> <a href="mailto:sophiaprytula@gmail.com">sophiaprytula@gmail.com</a></li>
-        <li><span data-i18n="contacts.phone">Телефон</span> <a href="tel:+4915120163247">+49 151 2016 3247</a></li>
+        <li><span data-i18n="contacts.email">E-Mail</span> <a href="mailto:sophiaprytula@gmail.com">sophiaprytula@gmail.com</a></li>
+        <li><span data-i18n="contacts.phone">Telefon</span> <a href="tel:+4915120163247">+49 151 2016 3247</a></li>
         <li><span>WhatsApp</span> <a data-wa="380966218605" href="https://wa.me/380966218605" target="_blank" rel="noopener">+380 96 621 8605</a></li>
         <li><span>Instagram</span> <a href="https://www.instagram.com/anima_teams/" target="_blank" rel="noopener">@anima_teams</a></li>
         <li><span>Telegram</span> <a href="https://t.me/gingzuh" target="_blank" rel="noopener">@gingzuh</a></li>
@@ -119,19 +202,20 @@
     <p>© <span id="year"></span> <span data-i18n="footer.name">Happy Team</span></p>
   </footer>
 
-  <a class="wa-fab ig-fab" href="https://www.instagram.com/anima_teams/" target="_blank" rel="noopener" aria-label="Відкрити Instagram" data-i18n-aria="ig.aria">
+  <a class="wa-fab ig-fab" href="https://www.instagram.com/anima_teams/" target="_blank" rel="noopener" aria-label="Instagram öffnen" data-i18n-aria="ig.aria">
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
   </a>
 
-  <a class="wa-fab tg-fab" href="https://t.me/gingzuh" target="_blank" rel="noopener" aria-label="Написати в Telegram" data-i18n-aria="tg.aria">
+  <a class="wa-fab tg-fab" href="https://t.me/gingzuh" target="_blank" rel="noopener" aria-label="Per Telegram schreiben" data-i18n-aria="tg.aria">
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
   </a>
 
-  <a class="wa-fab" data-wa="380966218605" href="https://wa.me/380966218605" target="_blank" rel="noopener" aria-label="Написати у WhatsApp" data-i18n-aria="wa.aria">
+  <a class="wa-fab" data-wa="380966218605" href="https://wa.me/380966218605" target="_blank" rel="noopener" aria-label="Per WhatsApp schreiben" data-i18n-aria="wa.aria">
     <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 
-  <script src="i18n.js?v=20261046"></script>
-  <script src="script.js?v=20261046"></script>
+  <script src="i18n.js?v=20261050"></script>
+  <script src="script.js?v=20261050"></script>
+  <script src="calc.js?v=20261050"></script>
 </body>
 </html>
