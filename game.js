@@ -5,10 +5,14 @@ const stage = canvas.parentElement;
 const SCALE = 2;
 let W = 800;
 let H = 500;
+let D = { size: 1, speed: 1, bomb: 0.15, spawn: 1 };
 
 /* на вузьких екранах поле вертикальне, щоб бульбашки були більшими */
 function setupSize() {
-  W = window.innerWidth < 640 ? 400 : 800;
+  const phone = window.innerWidth < 640;
+  W = phone ? 400 : 800;
+  /* на телефоні гра складніша: менші бульбашки, вища швидкість, більше бомб */
+  D = phone ? { size: 0.82, speed: 1.35, bomb: 0.22, spawn: 1.3 } : { size: 1, speed: 1, bomb: 0.15, spawn: 1 };
   H = 500;
   canvas.width = W * SCALE;
   canvas.height = H * SCALE;
@@ -86,22 +90,22 @@ const isLight = () => root.dataset.theme === 'light';
 /* великі бульбашки дають 1 бал, середні 2, мініатюрні 3 */
 function pickSize() {
   const roll = Math.random();
-  if (roll < 0.4) return { r: rand(42, 54), pts: 1 };
-  if (roll < 0.75) return { r: rand(27, 36), pts: 2 };
-  return { r: rand(13, 19), pts: 3 };
+  if (roll < 0.4) return { r: rand(42, 54) * D.size, pts: 1 };
+  if (roll < 0.75) return { r: rand(27, 36) * D.size, pts: 2 };
+  return { r: rand(13, 19) * D.size, pts: 3 };
 }
 
 function spawnBubble() {
   const ramp = 1 + (ROUND_SECONDS - timeLeft) / ROUND_SECONDS * 0.6;
-  const fake = state === 'play' && bubbles.filter((b) => b.fake).length < 2 && Math.random() < 0.15;
-  const size = fake ? { r: rand(30, 40), pts: 0 } : pickSize();
+  const fake = state === 'play' && bubbles.filter((b) => b.fake).length < 2 && Math.random() < D.bomb;
+  const size = fake ? { r: rand(30, 40) * D.size, pts: 0 } : pickSize();
   const x = rand(size.r, W - size.r);
   bubbles.push({
     x,
     y: H + size.r,
     r: size.r,
     pts: size.pts,
-    vy: -rand(55, 120) * ramp * (size.pts === 3 ? 1.15 : 1),
+    vy: -rand(55, 120) * ramp * D.speed * (size.pts === 3 ? 1.15 : 1),
     phase: rand(0, Math.PI * 2),
     sway: rand(10, 30),
     baseX: x,
@@ -113,7 +117,7 @@ function spawnBubble() {
 function spawnGold() {
   const r = 30;
   const x = rand(r + 10, W - r - 10);
-  bubbles.push({ x, y: H + r, r, pts: 5, vy: -rand(430, 520), phase: rand(0, Math.PI * 2), sway: 6, baseX: x, gold: true });
+  bubbles.push({ x, y: H + r, r, pts: 5, vy: -rand(430, 520) * D.speed, phase: rand(0, Math.PI * 2), sway: 6, baseX: x, gold: true });
 }
 
 function spawnShark() {
@@ -124,7 +128,7 @@ function spawnShark() {
     h: w * 64 / 120,
     x: toRight ? -w : W + w,
     y: rand(70, H - 160),
-    vx: (toRight ? 1 : -1) * rand(380, 470),
+    vx: (toRight ? 1 : -1) * rand(380, 470) * D.speed,
     wave: rand(0, 6),
   };
 }
@@ -250,7 +254,7 @@ function update(dt) {
     if (spawnTimer <= 0 && state === 'play') {
       spawnBubble();
       const ramp = 1 - (ROUND_SECONDS - timeLeft) / ROUND_SECONDS * 0.45;
-      spawnTimer = rand(0.35, 0.8) * ramp;
+      spawnTimer = rand(0.35, 0.8) * ramp * D.spawn;
     }
 
     sharkTimer -= dt;
