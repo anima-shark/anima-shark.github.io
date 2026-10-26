@@ -406,8 +406,9 @@ img { -webkit-user-drag: none; user-drag: none; }
 button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
 .section .btn { margin-top: .6rem; }
 
-/* у грі курсор звичайний */
+/* у грі курсор: приціл над полем, звичайний над кнопками */
 .stage, .stage * { cursor: default; }
+.stage canvas { cursor: url("crosshair.svg") 22 22, crosshair; }
 .stage .btn { cursor: pointer; }
 
 .ig-fab {

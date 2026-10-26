@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <!-- темна підкладка для контрасту на будь-якому фоні -->
+  <g fill="none" stroke="#0b1b3a" stroke-width="5" stroke-linecap="round" opacity=".55">
+    <circle cx="22" cy="22" r="13"/>
+    <path d="M22 2 V12 M22 32 V42 M2 22 H12 M32 22 H42"/>
+  </g>
+  <!-- біла основа прицілу -->
+  <g fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round">
+    <circle cx="22" cy="22" r="13"/>
+    <path d="M22 3 V12 M22 32 V41 M3 22 H12 M32 22 H41"/>
+  </g>
+  <!-- червона точка в центрі -->
+  <circle cx="22" cy="22" r="2.6" fill="#ff3b5c" stroke="#ffffff" stroke-width="1.2"/>
+</svg>
