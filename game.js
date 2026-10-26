@@ -16,7 +16,7 @@ function setupSize() {
 }
 setupSize();
 const ROUND_SECONDS = 45;
-const DISCOUNT_SCORE = 100; // поріг знижки 10%: підлаштуйте після тесту з дітьми
+const DISCOUNT_SCORE = 150; // поріг знижки 10% (після нових балів 100 стало замало): підлаштуйте після тесту з дітьми
 const WHATSAPP = '41764929764';
 
 const scoreEl = document.getElementById('score');
@@ -41,12 +41,14 @@ let score = 0;
 let timeLeft = ROUND_SECONDS;
 let spawnTimer = 0;
 let sharkTimer = 5;
+let goldTimer = 9;
 let last = 0;
 let best = 0;
 let newBest = false;
 let lastResult = null;
 let flash = 0;
 const FAKE_PENALTY = 3;
+const SHARK_POINTS = 3;
 
 try { best = Number(localStorage.getItem('sharkBest')) || 0; } catch {}
 bestEl.textContent = best;
@@ -81,21 +83,37 @@ i18n.apply();
 const rand = (a, b) => a + Math.random() * (b - a);
 const isLight = () => root.dataset.theme === 'light';
 
+/* великі бульбашки дають 1 бал, середні 2, мініатюрні 3 */
+function pickSize() {
+  const roll = Math.random();
+  if (roll < 0.4) return { r: rand(42, 54), pts: 1 };
+  if (roll < 0.75) return { r: rand(27, 36), pts: 2 };
+  return { r: rand(13, 19), pts: 3 };
+}
+
 function spawnBubble() {
-  const r = rand(26, 52);
   const ramp = 1 + (ROUND_SECONDS - timeLeft) / ROUND_SECONDS * 0.6;
   const fake = state === 'play' && bubbles.filter((b) => b.fake).length < 2 && Math.random() < 0.15;
+  const size = fake ? { r: rand(30, 40), pts: 0 } : pickSize();
+  const x = rand(size.r, W - size.r);
   bubbles.push({
-    x: rand(r, W - r),
-    y: H + r,
-    r,
-    vy: -rand(55, 120) * ramp,
+    x,
+    y: H + size.r,
+    r: size.r,
+    pts: size.pts,
+    vy: -rand(55, 120) * ramp * (size.pts === 3 ? 1.15 : 1),
     phase: rand(0, Math.PI * 2),
     sway: rand(10, 30),
-    baseX: 0,
+    baseX: x,
     fake,
   });
-  bubbles[bubbles.length - 1].baseX = bubbles[bubbles.length - 1].x;
+}
+
+/* швидка золота бульбашка: дуже швидка, за неї 5 балів */
+function spawnGold() {
+  const r = 30;
+  const x = rand(r + 10, W - r - 10);
+  bubbles.push({ x, y: H + r, r, pts: 5, vy: -rand(430, 520), phase: rand(0, Math.PI * 2), sway: 6, baseX: x, gold: true });
 }
 
 function spawnShark() {
@@ -106,7 +124,7 @@ function spawnShark() {
     h: w * 64 / 120,
     x: toRight ? -w : W + w,
     y: rand(70, H - 160),
-    vx: (toRight ? 1 : -1) * rand(120, 170),
+    vx: (toRight ? 1 : -1) * rand(380, 470),
     wave: rand(0, 6),
   };
 }
@@ -138,10 +156,10 @@ canvas.addEventListener('pointerdown', (e) => {
   if (shark) {
     const cx = shark.x + shark.w / 2;
     const cy = shark.y + shark.h / 2;
-    const dx = (p.x - cx) / (shark.w / 2 + 10);
-    const dy = (p.y - cy) / (shark.h / 2 + 14);
+    const dx = (p.x - cx) / (shark.w / 2 + 16);
+    const dy = (p.y - cy) / (shark.h / 2 + 20);
     if (dx * dx + dy * dy <= 1) {
-      addScore(5, cx, cy - 20);
+      addScore(SHARK_POINTS, cx, cy - 20);
       burst(cx, cy, ['#ffd93d', '#ff6b9d', '#6bf0c8', '#b388ff', '#7cd4ff'], 26, 260);
       shark = null;
       return;
@@ -151,17 +169,21 @@ canvas.addEventListener('pointerdown', (e) => {
   for (let i = bubbles.length - 1; i >= 0; i--) {
     const b = bubbles[i];
     const d = Math.hypot(p.x - b.x, p.y - b.y);
-    if (d <= b.r + 10) {
+    const tolerance = b.gold ? 18 : b.r < 22 ? 12 : 10;
+    if (d <= b.r + tolerance) {
       bubbles.splice(i, 1);
       if (b.fake) {
         score = Math.max(0, score - FAKE_PENALTY);
         scoreEl.textContent = score;
         floaters.push({ x: b.x, y: b.y - b.r, text: `-${FAKE_PENALTY}`, life: 0.9, big: true, color: '#ff4d6d' });
-        burst(b.x, b.y, ['#ff4d6d', '#ff8fa3', '#ffd0d9'], 16, 220);
-        flash = 0.35;
+        burst(b.x, b.y, ['#ff9f1c', '#ffd93d', '#ff4d6d', '#555a70'], 28, 300);
+        flash = 0.4;
+      } else if (b.gold) {
+        addScore(b.pts, b.x, b.y - b.r);
+        burst(b.x, b.y, ['#ffd93d', '#fff2a8', '#ffb020'], 22, 260);
       } else {
-        addScore(1, b.x, b.y - b.r);
-        burst(b.x, b.y, isLight() ? ['#2496f0', '#9bd6ff'] : ['#ffffff', '#cfeaff'], 9, 150);
+        addScore(b.pts, b.x, b.y - b.r);
+        burst(b.x, b.y, isLight() ? ['#2496f0', '#9bd6ff'] : ['#ffffff', '#cfeaff'], 6 + b.pts * 3, 150);
       }
       return;
     }
@@ -179,6 +201,7 @@ function startGame() {
   timeLeft = ROUND_SECONDS;
   spawnTimer = 0;
   sharkTimer = rand(4, 7);
+  goldTimer = rand(7, 11);
   newBest = false;
   flash = 0;
   scoreEl.textContent = 0;
@@ -233,7 +256,13 @@ function update(dt) {
     sharkTimer -= dt;
     if (sharkTimer <= 0 && !shark) {
       spawnShark();
-      sharkTimer = rand(7, 10);
+      sharkTimer = rand(6, 9);
+    }
+
+    goldTimer -= dt;
+    if (goldTimer <= 0) {
+      spawnGold();
+      goldTimer = rand(8, 13);
     }
   } else if (state === 'ready') {
     spawnTimer -= dt;
@@ -286,31 +315,79 @@ function drawSea() {
   ctx.fill();
 }
 
-function drawFake(b) {
-  const pulse = 1 + Math.sin(b.phase * 2) * 0.05;
-  const r = b.r * pulse;
-  const g = ctx.createRadialGradient(b.x - r * 0.3, b.y - r * 0.3, r * 0.1, b.x, b.y, r);
-  g.addColorStop(0, 'rgba(255,200,210,.95)');
-  g.addColorStop(0.55, 'rgba(255,77,109,.75)');
-  g.addColorStop(1, 'rgba(190,20,60,.85)');
+function drawBomb(b) {
+  const r = b.r * (1 + Math.sin(b.phase * 3) * 0.03);
+  const g = ctx.createRadialGradient(b.x - r * 0.35, b.y - r * 0.35, r * 0.1, b.x, b.y, r);
+  g.addColorStop(0, '#6f7490');
+  g.addColorStop(0.5, '#2b2e40');
+  g.addColorStop(1, '#0d0f18');
   ctx.fillStyle = g;
   ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, Math.PI * 2); ctx.fill();
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = 'rgba(255,255,255,.55)';
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(255,255,255,.55)';
+  ctx.beginPath(); ctx.ellipse(b.x - r * 0.38, b.y - r * 0.4, r * 0.18, r * 0.1, -0.6, 0, Math.PI * 2); ctx.fill();
+
+  ctx.fillStyle = '#4a4e66';
+  ctx.fillRect(b.x - r * 0.24, b.y - r * 1.08, r * 0.48, r * 0.22);
+
+  ctx.lineCap = 'round';
+  ctx.lineWidth = Math.max(3, r * 0.09);
+  ctx.strokeStyle = '#d9b46a';
+  const tipX = b.x + r * 0.55;
+  const tipY = b.y - r * 1.45;
+  ctx.beginPath();
+  ctx.moveTo(b.x, b.y - r * 1.05);
+  ctx.quadraticCurveTo(b.x + r * 0.05, b.y - r * 1.4, tipX, tipY);
+  ctx.stroke();
+  ctx.lineCap = 'butt';
+
+  const flicker = 1 + Math.sin(b.phase * 9) * 0.35;
+  ctx.fillStyle = '#ff9f1c';
+  ctx.beginPath(); ctx.arc(tipX, tipY, r * 0.2 * flicker, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#ffe66d';
+  ctx.beginPath(); ctx.arc(tipX, tipY, r * 0.11 * flicker, 0, Math.PI * 2); ctx.fill();
+
+  ctx.fillStyle = '#ff4d6d';
+  ctx.font = `800 ${Math.round(r * 0.9)}px system-ui, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('!', b.x, b.y + r * 0.06);
+  ctx.textBaseline = 'alphabetic';
+}
+
+function drawGold(b) {
+  for (let i = 1; i <= 4; i++) {
+    ctx.globalAlpha = 0.28 - i * 0.05;
+    ctx.fillStyle = '#ffd93d';
+    ctx.beginPath(); ctx.arc(b.x, b.y + i * b.r * 0.7, b.r * (1 - i * 0.14), 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  const g = ctx.createRadialGradient(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.1, b.x, b.y, b.r);
+  g.addColorStop(0, '#fffbe0');
+  g.addColorStop(0.55, '#ffd93d');
+  g.addColorStop(1, '#e09a00');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ctx.fill();
   ctx.lineWidth = 3;
   ctx.strokeStyle = '#ffffff';
   ctx.stroke();
-  const k = r * 0.38;
-  ctx.lineWidth = Math.max(4, r * 0.18);
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = '#ffffff';
+
+  ctx.fillStyle = '#ffffff';
   ctx.beginPath();
-  ctx.moveTo(b.x - k, b.y - k); ctx.lineTo(b.x + k, b.y + k);
-  ctx.moveTo(b.x + k, b.y - k); ctx.lineTo(b.x - k, b.y + k);
-  ctx.stroke();
-  ctx.lineCap = 'butt';
+  for (let i = 0; i < 10; i++) {
+    const ang = -Math.PI / 2 + i * Math.PI / 5;
+    const rad = i % 2 === 0 ? b.r * 0.55 : b.r * 0.24;
+    ctx.lineTo(b.x + Math.cos(ang) * rad, b.y + Math.sin(ang) * rad);
+  }
+  ctx.closePath(); ctx.fill();
 }
 
 function drawBubble(b) {
-  if (b.fake) { drawFake(b); return; }
+  if (b.fake) { drawBomb(b); return; }
+  if (b.gold) { drawGold(b); return; }
   const light = isLight();
   const g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.35, b.r * 0.1, b.x, b.y, b.r);
   g.addColorStop(0, light ? 'rgba(210,240,255,.95)' : 'rgba(255,255,255,.9)');
