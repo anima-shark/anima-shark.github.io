@@ -6,13 +6,15 @@ const SCALE = 2;
 let W = 800;
 let H = 500;
 let D = { size: 1, speed: 1, bomb: 0.15, spawn: 1 };
+let DISCOUNT_SCORE = 135; // поріг знижки 10%: на телефоні нижчий (105), бо гра там складніша; підлаштуйте після тесту з дітьми
 
 /* на вузьких екранах поле вертикальне, щоб бульбашки були більшими */
 function setupSize() {
   const phone = window.innerWidth < 640;
   W = phone ? 400 : 800;
-  /* на телефоні гра складніша: менші бульбашки, вища швидкість, більше бомб */
-  D = phone ? { size: 0.82, speed: 1.35, bomb: 0.22, spawn: 1.3 } : { size: 1, speed: 1, bomb: 0.15, spawn: 1 };
+  /* складність: на телефоні ще важче (менші бульбашки, вища швидкість, більше бомб, менше бульбашок) */
+  DISCOUNT_SCORE = phone ? 105 : 135;
+  D = phone ? { size: 0.75, speed: 1.5, bomb: 0.25, spawn: 1.45 } : { size: 0.9, speed: 1.2, bomb: 0.2, spawn: 1.15 };
   H = 500;
   canvas.width = W * SCALE;
   canvas.height = H * SCALE;
@@ -20,7 +22,6 @@ function setupSize() {
 }
 setupSize();
 const ROUND_SECONDS = 45;
-const DISCOUNT_SCORE = 150; // поріг знижки 10% (після нових балів 100 стало замало): підлаштуйте після тесту з дітьми
 const WHATSAPP = '380966218605';
 
 const scoreEl = document.getElementById('score');
@@ -196,6 +197,7 @@ canvas.addEventListener('pointerdown', (e) => {
 
 function startGame() {
   setupSize();
+  renderGoal();
   discountBtn.hidden = true;
   bubbles = [];
   particles = [];
