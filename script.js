@@ -34,7 +34,8 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   layer.className = 'bubbles';
   layer.setAttribute('aria-hidden', 'true');
 
-  for (let i = 0; i < 160; i++) {
+  const bubbleCount = window.innerWidth < 640 ? 55 : 160; // менше бульбашок на телефонах
+  for (let i = 0; i < bubbleCount; i++) {
     const bubble = document.createElement('span');
     const size = 8 + Math.random() * Math.random() * 70;
     bubble.className = 'bubble';
