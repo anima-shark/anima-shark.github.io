@@ -427,3 +427,5 @@ button.btn { border: 0; font: inherit; font-weight: 600; cursor: inherit; }
 #discountBtn[hidden] { display: none; }
 
 .card .price { margin: .8rem 0 0; font-weight: 600; color: var(--accent); }
+
+.i18n-pending body { visibility: hidden; }

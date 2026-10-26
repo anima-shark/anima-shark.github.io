@@ -237,16 +237,13 @@ const I18N = {
 
 const i18n = (() => {
   function saved() {
-    try { return localStorage.getItem('lang'); } catch { return null; }
+    try { return localStorage.getItem('lang2'); } catch { return null; }
   }
 
   function initialLang() {
     const fromUrl = new URLSearchParams(location.search).get('lang');
-    const preferred = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''])
-      .map((l) => l.toLowerCase().slice(0, 2))
-      .find((l) => I18N[l]);
-    const pick = fromUrl || saved() || preferred || 'de';
-    return I18N[pick] ? pick : 'uk';
+    const pick = fromUrl || saved() || 'de';
+    return I18N[pick] ? pick : 'de';
   }
 
   let lang = initialLang();
@@ -273,12 +270,13 @@ const i18n = (() => {
       group.setAttribute('aria-label', t('lang.aria'));
       group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     }
+    document.documentElement.classList.remove('i18n-pending');
     document.dispatchEvent(new Event('langchange'));
   }
 
   function set(next) {
     lang = next;
-    try { localStorage.setItem('lang', lang); } catch {}
+    try { localStorage.setItem('lang2', lang); } catch {}
     apply();
   }
 
