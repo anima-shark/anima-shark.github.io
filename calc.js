@@ -12,6 +12,25 @@
   const waNumber = document.querySelector('[data-wa]').dataset.wa;
   const MAIL = 'sophiaprytula@gmail.com';
 
+  const LEAD_DAYS = 14;
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const earliest = new Date();
+  earliest.setDate(earliest.getDate() + LEAD_DAYS);
+  date.min = iso(earliest);
+  const hint = document.createElement('small');
+  hint.className = 'date-hint';
+  date.parentNode.appendChild(hint);
+  function checkDate() {
+    const ok = !date.value || (date.value >= date.min && [0, 6].includes(new Date(date.value + 'T12:00').getDay()));
+    if (!ok) date.value = '';
+    hint.textContent = i18n.t(ok ? 'calc.date.hint' : 'calc.date.bad');
+    hint.classList.toggle('bad', !ok);
+  }
+  date.addEventListener('input', checkDate);
+  date.addEventListener('change', () => { checkDate(); render(); });
+  document.addEventListener('langchange', checkDate);
+  checkDate();
+
   const wanted = new URLSearchParams(location.search).get('theme');
   if (wanted && [...theme.options].some((o) => o.value === wanted)) theme.value = wanted;
 

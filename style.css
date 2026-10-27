@@ -459,3 +459,5 @@ a.card:hover { transform: translateY(-3px); border-color: var(--accent); text-de
 .lead2 { font-size: 1.1rem; color: var(--muted); max-width: 40rem; }
 .h2-small { font-size: 1.2rem; margin: 1.4rem 0 .6rem; }
 @media (max-width: 560px) { .calc-form { grid-template-columns: 1fr; } .extras { grid-column: auto; } }
+.date-hint { font-size: .78rem; color: var(--muted); }
+.date-hint.bad { color: #ff6b6b; font-weight: 600; }
