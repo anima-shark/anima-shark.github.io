@@ -6,15 +6,15 @@ const SCALE = 2;
 let W = 800;
 let H = 500;
 let D = { size: 1, speed: 1, bomb: 0.15, spawn: 1 };
-let DISCOUNT_SCORE = 135; // поріг знижки 10%: на телефоні нижчий (105), бо гра там складніша; підлаштуйте після тесту з дітьми
+let DISCOUNT_SCORE = 200; // поріг знижки 10%; підлаштуйте після тесту з дітьми
 
 /* на вузьких екранах поле вертикальне, щоб бульбашки були більшими */
 function setupSize() {
   const phone = window.innerWidth < 640;
   W = phone ? 400 : 800;
   /* складність: на телефоні ще важче (менші бульбашки, вища швидкість, більше бомб, менше бульбашок) */
-  DISCOUNT_SCORE = phone ? 105 : 135;
-  D = phone ? { size: 0.75, speed: 1.5, bomb: 0.25, spawn: 1.45 } : { size: 0.9, speed: 1.2, bomb: 0.2, spawn: 1.15 };
+  DISCOUNT_SCORE = 200;
+  D = phone ? { size: 0.72, speed: 1.55, bomb: 0.3, spawn: 0.85 } : { size: 0.85, speed: 1.35, bomb: 0.25, spawn: 0.85 };
   H = 500;
   canvas.width = W * SCALE;
   canvas.height = H * SCALE;
