@@ -176,3 +176,18 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   ['pointerup', 'pointercancel'].forEach((type) =>
     document.addEventListener(type, () => { pressed = false; }));
 }
+
+
+/* кнопка «Поділитись»: меню телефона, а на комп'ютері — WhatsApp */
+const shareBtn = document.getElementById('shareBtn');
+if (shareBtn) {
+  shareBtn.addEventListener('click', async () => {
+    const url = `${location.origin}${location.pathname}?lang=${document.documentElement.lang}`;
+    const text = i18n.t('share.text');
+    if (navigator.share) {
+      try { await navigator.share({ title: 'Happy Team', text, url }); } catch {}
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`, '_blank', 'noopener');
+    }
+  });
+}
