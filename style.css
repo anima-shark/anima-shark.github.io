@@ -473,7 +473,7 @@ a.card:hover { transform: translateY(-3px); border-color: var(--accent); text-de
 .cal-day { aspect-ratio: 1; border: 0; border-radius: 8px; font: inherit; font-size: .9rem; color: inherit; background: transparent; cursor: pointer; padding: 0; }
 .cal-day.ok { background: color-mix(in srgb, var(--accent) 22%, transparent); font-weight: 700; }
 .cal-day.ok:hover { background: var(--accent); color: #fff; }
-.cal-day.no { opacity: .3; cursor: not-allowed; }
+.cal-day.no { opacity: .6; color: #ff6b6b; cursor: not-allowed; }
 .cal-day.no:hover { opacity: .6; }
 .cal-day.shake { opacity: 1; animation: calshake .3s 2; }
 @keyframes calshake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }

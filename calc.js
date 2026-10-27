@@ -47,7 +47,7 @@
     for (let n = 1; n <= days; n++) {
       const d = new Date(view.getFullYear(), view.getMonth(), n, 12);
       const ok = allowed(d);
-      html += `<button type="button" class="cal-day ${ok ? 'ok' : 'no'}" data-d="${iso(d)}" data-n="${n}">${n}</button>`;
+      html += `<button type="button" class="cal-day ${ok ? 'ok' : 'no'}" data-d="${iso(d)}" data-n="${n}" ${ok ? '' : 'aria-disabled="true" title="✕"'}>${ok ? n : '✕'}</button>`;
     }
     pop.innerHTML = html + '</div>';
   }
@@ -64,10 +64,9 @@
       setHint(false);
       render();
     } else {
-      day.textContent = '💀';
       day.classList.add('shake');
       setHint(true);
-      setTimeout(() => { day.textContent = day.dataset.n; day.classList.remove('shake'); }, 900);
+      setTimeout(() => day.classList.remove('shake'), 700);
     }
   });
   document.addEventListener('click', (e) => { if (!pop.hidden && !e.target.closest('.cal-wrap')) pop.hidden = true; });
