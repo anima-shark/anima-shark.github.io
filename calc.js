@@ -4,7 +4,7 @@
 
   const RATE_MIN = 50;
   const RATE_MAX = 60;
-  const EXTRA = 50;
+  const EXTRA = 40;
   const $ = (id) => document.getElementById(id);
   const date = $('cDate'), kids = $('cKids'), age = $('cAge'), theme = $('cTheme');
   const animators = $('cAnimators'), hours = $('cHours'), deco = $('cDeco'), clean = $('cClean');
