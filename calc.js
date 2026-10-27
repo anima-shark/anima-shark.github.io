@@ -54,6 +54,7 @@
   function open() { draw(); pop.hidden = false; }
   date.addEventListener('click', () => (pop.hidden ? open() : (pop.hidden = true)));
   pop.addEventListener('click', (e) => {
+    e.stopPropagation();
     const nav = e.target.closest('.cal-nav');
     if (nav) { view = new Date(view.getFullYear(), view.getMonth() + Number(nav.dataset.nav), 1); draw(); return; }
     const day = e.target.closest('.cal-day');
