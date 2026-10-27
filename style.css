@@ -467,7 +467,7 @@ a.card:hover { transform: translateY(-3px); border-color: var(--accent); text-de
 .cal-pop[hidden] { display: none; }
 .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .5rem; text-transform: capitalize; }
 .cal-nav { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--accent); background: transparent; color: inherit; font-size: 1.2rem; cursor: pointer; }
-.cal-nav:disabled { opacity: .3; cursor: default; }
+.cal-nav[aria-disabled] { opacity: .3; cursor: default; }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; }
 .cal-grid i { font-style: normal; font-size: .72rem; opacity: .6; }
 .cal-day { aspect-ratio: 1; border: 0; border-radius: 8px; font: inherit; font-size: .9rem; color: inherit; background: transparent; cursor: pointer; padding: 0; }

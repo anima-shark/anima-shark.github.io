@@ -41,7 +41,7 @@
     const first = (view.getDay() + 6) % 7;
     const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
     const canPrev = view > new Date(earliest.getFullYear(), earliest.getMonth(), 1);
-    let html = `<div class="cal-head"><button type="button" class="cal-nav" data-nav="-1" ${canPrev ? '' : 'disabled'} aria-label="‹">‹</button><b>${month}</b><button type="button" class="cal-nav" data-nav="1" aria-label="›">›</button></div><div class="cal-grid">`;
+    let html = `<div class="cal-head"><button type="button" class="cal-nav" data-nav="-1" ${canPrev ? '' : 'aria-disabled="true"'} aria-label="‹">‹</button><b>${month}</b><button type="button" class="cal-nav" data-nav="1" aria-label="›">›</button></div><div class="cal-grid">`;
     for (let i = 0; i < 7; i++) html += `<i>${new Date(2024, 0, 1 + i).toLocaleDateString(loc, { weekday: 'short' })}</i>`;
     for (let i = 0; i < first; i++) html += '<span></span>';
     for (let n = 1; n <= days; n++) {
@@ -55,8 +55,10 @@
   date.addEventListener('click', () => (pop.hidden ? open() : (pop.hidden = true)));
   pop.addEventListener('click', (e) => {
     e.stopPropagation();
+    e.preventDefault(); // pop lives inside <label>: otherwise any click in it re-clicks the input and closes it
     const nav = e.target.closest('.cal-nav');
-    if (nav) { view = new Date(view.getFullYear(), view.getMonth() + Number(nav.dataset.nav), 1); draw(); return; }
+    if (nav) {
+      if (nav.getAttribute('aria-disabled')) return; view = new Date(view.getFullYear(), view.getMonth() + Number(nav.dataset.nav), 1); draw(); return; }
     const day = e.target.closest('.cal-day');
     if (!day) return;
     if (day.classList.contains('ok')) {
