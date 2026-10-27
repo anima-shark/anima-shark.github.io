@@ -482,3 +482,4 @@ a.card:hover { transform: translateY(-3px); border-color: var(--accent); text-de
 .team img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent); display: block; }
 .team span { display: block; margin-top: .6rem; font-weight: 700; }
 @media (max-width: 640px) { .team { grid-template-columns: repeat(2, 1fr); } }
+.quote { margin: .2rem 0 1rem; padding: .2rem 0 .2rem 1rem; border-left: 4px solid var(--accent); font-size: 1.2rem; font-style: italic; font-weight: 600; line-height: 1.45; }
